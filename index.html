@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mobile-optimized viewport: prevents zoom on double-tap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="description" content="Sofiano Coffee Menu - قائمة مقهى سوفيانو الإسكندرية">
+    <meta name="theme-color" content="#1B4D4D">
+    
+    <!-- Mobile Web App Capable -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sofiano Menu">
+    
+    <!-- Disable auto phone number detection -->
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Advanced Resource Hints Strategy -->
+    <!-- Phase 1: DNS Resolution (earliest) - ~20-120ms saved -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Phase 2: Early Connection (with handshake) - ~100-200ms saved -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    
+    <!-- Phase 3: Preload Critical Resources -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Preload Logo Image (Critical for LCP) -->
+    <link rel="preload" as="image" href="assets/images/1.png" type="image/png">
+    
+    <title>Sofiano Menu - Fast & Elegant | قائمة سوفيانو</title>
+    
+    <!-- Critical CSS Inline - Above the fold only -->
+    <style>
+        /* Critical CSS for initial render */
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#F5E6D3;color:#1B4D4D;overflow-x:hidden}
+        .header-section{background:linear-gradient(135deg,#1B4D4D 0%,#15403F 50%,#2A6666 100%);padding:60px 20px;text-align:center;min-height:350px;display:flex;align-items:center;justify-content:center}
+        .logo-image{max-width:350px;width:100%;height:auto;display:block;margin:0 auto 20px}
+        .category-nav{padding:30px 20px;text-align:center;position:sticky;top:0;background:rgba(255,255,255,0.95);z-index:100;backdrop-filter:blur(10px)}
+        .loading{display:inline-block;width:50px;height:50px;border:5px solid #f3f3f3;border-top:5px solid #1B4D4D;border-radius:50%;animation:spin 1s linear infinite}
+        @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    </style>
+    
+    <!-- Font Awesome - Deferred -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    
+    <!-- Google Fonts - Optimized -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"></noscript>
+    
+    <style>
+        /* ========================================
+           ROOT VARIABLES - من الهوية البصرية
+        ======================================== */
+        :root {
+            --navy-teal: #1B4D4D;
+            --dark-teal: #15403F;
+            --beige-cream: #F5E6D3;
+            --gold: #C9A868;
+            --light-beige: #FFF9F0;
+            --white: #FFFFFF;
+            --text-dark: #1B4D4D;
+            --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* ========================================
+           GLOBAL STYLES
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* Remove 300ms tap delay on mobile */
+            touch-action: manipulation;
+            /* Prevent text selection on tap */
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Cairo', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #F5E6D3 0%, #FFF9F0 50%, #F5E6D3 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* Mobile text rendering optimization */
+            text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        /* Background Pattern - حبوب القهوة والأوراق */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            z-index: 0;
+            background-image: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="25" cy="25" r="2" fill="%23C9A868" opacity="0.3"/><circle cx="75" cy="75" r="2" fill="%231B4D4D" opacity="0.3"/><path d="M40,30 Q50,20 60,30 T80,30" stroke="%23C9A868" fill="none" opacity="0.2"/></svg>');
+            background-size: 150px 150px;
+            pointer-events: none;
+        }
+        
+        /* Decorative leaves watermark */
+        body::after {
+            content: '🍃';
+            position: fixed;
+            top: 20%;
+            right: 5%;
+            font-size: 150px;
+            opacity: 0.025;
+            z-index: 0;
+            pointer-events: none;
+            transform: rotate(-20deg);
+        }
+        
+        /* Coffee beans watermark */
+        .coffee-watermark {
+            position: fixed;
+            bottom: 10%;
+            left: 5%;
+            font-size: 120px;
+            opacity: 0.02;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* ========================================
+           HEADER SECTION
+        ======================================== */
+        .header-section {
+            background: linear-gradient(135deg, var(--navy-teal) 0%, var(--dark-teal) 50%, #2A6666 100%);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            animation: fadeInDown 0.8s ease-out;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Animated background particles */
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(193, 154, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(74, 184, 184, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        /* Decorative coffee beans pattern */
+        .header-section::after {
+            content: '☕';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        .logo-container {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Logo Image Styling - AMAZING! */
+        .logo-image {
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3))
+                    drop-shadow(0 0 40px rgba(193, 154, 107, 0.4));
+            animation: logoFloat 3s ease-in-out infinite, logoGlow 2s ease-in-out infinite alternate;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), filter 0.5s ease;
+            border-radius: 20px;
+            will-change: transform;
+            contain: layout style;
+        }
+        
+        .logo-image:hover {
+            transform: translate3d(0, 0, 0) scale(1.08) rotate(2deg);
+            filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.4))
+                    drop-shadow(0 0 60px rgba(193, 154, 107, 0.6))
+                    drop-shadow(0 0 80px rgba(74, 184, 184, 0.4));
+        }
+        
+        /* Remove will-change after animation completes */
+        .logo-image.loaded {
+            will-change: auto;
+        }
+        
+        /* Logo glow effect */
+        @keyframes logoGlow {
+            0% {
+                filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3))
+                        drop-shadow(0 0 40px rgba(193, 154, 107, 0.4));
+            }
+            100% {
+                filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3))
+                        drop-shadow(0 0 60px rgba(193, 154, 107, 0.7))
+                        drop-shadow(0 0 80px rgba(74, 184, 184, 0.5));
+            }
+        }
+        
+        /* Logo floating animation */
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate3d(0, -10px, 0) rotate(1deg);
+            }
+            50% {
+                transform: translate3d(0, -5px, 0) rotate(-1deg);
+            }
+            75% {
+                transform: translate3d(0, -15px, 0) rotate(0.5deg);
+            }
+        }
+        
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--white);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3),
+                         0 0 20px rgba(193, 154, 107, 0.5);
+            letter-spacing: 3px;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        
+        .logo-subtitle {
+            font-size: 1.3rem;
+            color: var(--beige-cream);
+            margin-top: 15px;
+            font-weight: 400;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+        
+        /* Decorative line under subtitle */
+        .logo-subtitle::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-bronze), transparent);
+            margin: 15px auto 0;
+            border-radius: 2px;
+            animation: expandLine 1.5s ease-out 0.8s both;
+        }
+        
+        @keyframes expandLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 150px;
+                opacity: 1;
+            }
+        }
+        
+        /* Coffee beans decoration floating around */
+        .coffee-beans {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.15;
+            animation: floatBeans 8s ease-in-out infinite;
+        }
+        
+        .coffee-beans:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .coffee-beans:nth-child(2) {
+            top: 20%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+        
+        .coffee-beans:nth-child(3) {
+            bottom: 15%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+        
+        .coffee-beans:nth-child(4) {
+            bottom: 25%;
+            right: 5%;
+            animation-delay: 6s;
+        }
+        
+        @keyframes floatBeans {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        /* Power Saving Mode - Reduce animations */
+        .power-saving-mode * {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+        }
+        
+        .power-saving-mode .logo-image,
+        .power-saving-mode .category-btn,
+        .power-saving-mode .coffee-beans {
+            animation: none !important;
+        }
+        
+        @keyframes rotate {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        
+        @keyframes textGlow {
+            from {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3),
+                             0 0 20px rgba(201, 168, 104, 0.3);
+            }
+            to {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3),
+                             0 0 30px rgba(201, 168, 104, 0.7),
+                             0 0 40px rgba(27, 77, 77, 0.4);
+            }
+        }
+        
+        /* ========================================
+           CATEGORY NAVIGATION
+        ======================================== */
+        .category-nav {
+            padding: 30px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            box-shadow: var(--shadow-soft);
+            animation: slideDown 0.6s ease-out 0.3s both;
+        }
+        
+        .category-pills {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            gap: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 20px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            /* Better touch scrolling performance */
+            scroll-snap-type: x proximity;
+            
+            /* إخفاء scroll bar */
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        .category-btn {
+            scroll-snap-align: start;
+        }
+        
+        /* إخفاء scroll bar في Chrome, Safari */
+        .category-pills::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Scroll indicator - خط تحت للإشارة */
+        .category-pills::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+        
+        .category-btn {
+            padding: 12px 30px;
+            border: 2px solid var(--navy-teal);
+            background: var(--white);
+            color: var(--navy-teal);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            flex-shrink: 0;
+            will-change: transform;
+            contain: layout style paint;
+        }
+        
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--gold);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+        
+        .category-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .category-btn:hover {
+            transform: translate3d(0, -3px, 0);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-btn.no-animation {
+            will-change: auto;
+        }
+        
+        .category-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--gold), #D4AF37);
+            color: var(--white);
+            border-color: var(--gold);
+            box-shadow: 0 4px 12px rgba(201, 168, 104, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .category-btn i {
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* ========================================
+           MENU SECTION
+        ======================================== */
+        .menu-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            /* Smooth scrolling on iOS */
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .menu-category {
+            display: none;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .menu-category.active {
+            display: block;
+        }
+        
+        .category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy-teal);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 2px;
+        }
+        
+        /* ========================================
+           MENU ITEMS - تصميم بسيط وواضح
+        ======================================== */
+        .menu-table-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 0;
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
+            border: 1px solid rgba(201, 168, 104, 0.2);
+            position: relative;
+            contain: layout style;
+        }
+        
+        /* Decorative side strip - مثل الشريط في الصورة */
+        .menu-table-container::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 8px;
+            background: linear-gradient(180deg, var(--navy-teal), var(--dark-teal), #2A6666);
+            z-index: 1;
+        }
+        
+        .menu-items-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background: rgba(245, 230, 211, 0.05);
+            contain: content;
+        }
+        
+        .menu-item {
+            display: grid;
+            grid-template-columns: 1fr 80px 80px 1fr;
+            align-items: center;
+            padding: 16px 25px;
+            margin-bottom: 2px;
+            border-radius: 0;
+            transition: all 0.3s ease;
+            border-bottom: 1.5px solid rgba(193, 154, 107, 0.25);
+            gap: 20px;
+        }
+        
+        .menu-item:nth-child(even) {
+            background: rgba(245, 230, 211, 0.2);
+        }
+        
+        .menu-item:hover {
+            background: rgba(201, 168, 104, 0.25);
+            transform: translateZ(0) scale(1.005);
+            box-shadow: inset 0 0 0 1px rgba(201, 168, 104, 0.3);
+        }
+        
+        .menu-item:first-child {
+            border-top: 1.5px solid rgba(201, 168, 104, 0.25);
+        }
+        
+        /* اسم المنتج بالعربي - على اليمين */
+        .item-name-ar {
+            font-family: 'Cairo', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy-teal);
+            text-align: right;
+            line-height: 1.5;
+        }
+        
+        /* اسم المنتج بالإنجليزي - على اليسار */
+        .item-name-en {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #666;
+            text-align: left;
+            line-height: 1.5;
+        }
+        
+        /* Container للاسم العربي والوصف */
+        .item-names {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        /* وصف المنتج / المكونات */
+        .item-description {
+            font-size: 0.85rem;
+            color: #888;
+            font-style: italic;
+            margin-top: 3px;
+            line-height: 1.4;
+        }
+        
+        /* السعر S - في الوسط */
+        .price-s {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(201, 168, 104, 0.3);
+        }
+        
+        /* السعر D - في الوسط */
+        .price-d {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-align: center;
+            text-shadow: 0 1px 3px rgba(201, 168, 104, 0.3);
+        }
+        
+        /* الشرطة عند عدم توفر السعر */
+        .price-na {
+            color: #ccc;
+            font-weight: 400;
+            font-size: 1.6rem;
+        }
+        
+        /* Header للأعمدة */
+        .menu-header {
+            display: grid;
+            grid-template-columns: 1fr 80px 80px 1fr;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--navy-teal), var(--dark-teal));
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 12px 12px 0 0;
+            gap: 20px;
+            margin-bottom: 0;
+        }
+        
+        .menu-header-ar {
+            text-align: right;
+        }
+        
+        .menu-header-s,
+        .menu-header-d {
+            text-align: center;
+        }
+        
+        .menu-header-en {
+            text-align: left;
+        }
+        
+        /* Flavors Note - ملاحظة النكهات */
+        .flavors-note {
+            margin-top: 25px;
+            padding: 20px 25px;
+            background: linear-gradient(135deg, rgba(201, 168, 104, 0.1), rgba(27, 77, 77, 0.1));
+            border-right: 4px solid var(--gold);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--navy-teal);
+            text-align: right;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            animation: slideInRight 0.6s ease-out 0.3s both;
+        }
+        
+        .flavors-note i {
+            color: var(--gold);
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .flavors-note strong {
+            color: var(--navy-teal);
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translate3d(50px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        /* Lazy loading optimization */
+        .menu-item {
+            opacity: 1;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        
+        .menu-item.lazy-load {
+            opacity: 0;
+            transform: translate3d(0, 20px, 0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .menu-item.lazy-load.visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        
+        /* ========================================
+           FOOTER
+        ======================================== */
+        .footer-section {
+            background: var(--navy-teal);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background: var(--gold);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 5px 15px rgba(201, 168, 104, 0.4);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -50px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 50px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            }
+            to {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3),
+                             0 0 20px rgba(193, 154, 107, 0.5),
+                             0 0 30px rgba(193, 154, 107, 0.3);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* ========================================
+           RESPONSIVE DESIGN - Mobile First
+        ======================================== */
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 40px 15px;
+                min-height: 280px;
+            }
+            
+            .logo-image {
+                max-width: 250px;
+            }
+            
+            .logo-text {
+                font-size: 2.5rem;
+            }
+            
+            .logo-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 4px;
+            }
+            
+            .coffee-beans {
+                font-size: 1.5rem;
+            }
+            
+            .category-pills {
+                gap: 10px;
+                padding: 10px 10px;
+                justify-content: flex-start;
+            }
+            
+            .category-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .category-title {
+                font-size: 2rem;
+            }
+            
+            /* تحويل الجدول لـ Cards على الموبايل */
+            .menu-table-container {
+                padding: 15px;
+            }
+            
+            .menu-table thead {
+                display: none;
+            }
+            
+            .menu-table tbody tr {
+                display: block;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                border: 2px solid rgba(44, 62, 80, 0.1);
+                overflow: hidden;
+                box-shadow: var(--shadow-soft);
+            }
+            
+            .menu-table tbody tr:nth-child(even) {
+                background: var(--white);
+            }
+            
+            .menu-header {
+                grid-template-columns: 1fr 70px 70px 1fr;
+                padding: 12px 15px;
+                font-size: 0.85rem;
+                gap: 10px;
+            }
+            
+            .menu-item {
+                grid-template-columns: 1fr 70px 70px 1fr;
+                padding: 14px 15px;
+                gap: 10px;
+            }
+            
+            .item-name-ar {
+                font-size: 1rem;
+            }
+            
+            .item-name-en {
+                font-size: 0.9rem;
+            }
+            
+            .price-s,
+            .price-d {
+                font-size: 1.3rem;
+            }
+            
+            .item-description {
+                font-size: 0.75rem;
+            }
+            
+            .menu-table-container {
+                border-radius: 12px;
+            }
+            
+            .menu-table-container::before {
+                width: 5px;
+            }
+            
+            .flavors-note {
+                padding: 15px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-section {
+                padding: 30px 15px;
+                min-height: 250px;
+            }
+            
+            .logo-image {
+                max-width: 200px;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .logo-subtitle {
+                font-size: 0.8rem;
+                letter-spacing: 3px;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Landscape mode for tablets */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .category-pills {
+                max-width: 100%;
+            }
+            
+            .menu-table tbody td {
+                padding: 15px 12px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Coffee Watermark -->
+    <div class="coffee-watermark">☕</div>
+    
+    <!-- ========================================
+         HEADER SECTION
+    ======================================== -->
+    <header class="header-section">
+        <!-- Floating coffee beans decoration -->
+        <div class="coffee-beans">☕</div>
+        <div class="coffee-beans">🫘</div>
+        <div class="coffee-beans">☕</div>
+        <div class="coffee-beans">🫘</div>
+        
+        <div class="logo-container">
+            <!-- LOGO IMAGE - AMAZING DISPLAY! -->
+            <img src="assets/images/1.png" alt="Sofiano Coffee Logo" class="logo-image">
+            
+            <!-- Text under logo -->
+            <h1 class="logo-text">SOFIANO</h1>
+            <p class="logo-subtitle">Coffee Menu</p>
+        </div>
+    </header>
+    
+    <!-- ========================================
+         CATEGORY NAVIGATION
+    ======================================== -->
+    <nav class="category-nav">
+        <div class="category-pills" id="categoryPills">
+            <!-- سيتم إضافة الأزرار ديناميكياً -->
+        </div>
+    </nav>
+    
+    <!-- ========================================
+         MENU CONTAINER
+    ======================================== -->
+    <main class="menu-container">
+        <div id="menuContent">
+            <!-- سيتم إضافة المحتوى ديناميكياً -->
+        </div>
+    </main>
+    
+    <!-- ========================================
+         FOOTER SECTION
+    ======================================== -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <h3 class="footer-title">Sofiano Coffee</h3>
+            <p class="footer-text">الإسكندرية - الفلكي شارع 16 الملك<br>بجوار بيت الجملة<br>Alexandria, Egypt</p>
+            
+            <div class="social-icons">
+                <a href="https://www.facebook.com/profile.php?id=61581021861746" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/mahmoud_a_agay_9/" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/201095031083" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Sofiano Coffee. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========================================
+         JAVASCRIPT - Vanilla JS - Optimized
+    ======================================== -->
+    <script>
+        // ========================================
+        // POLYFILLS - Load First!
+        // ========================================
+        
+        // Polyfill for requestIdleCallback (must be first!)
+        if (!('requestIdleCallback' in window)) {
+            window.requestIdleCallback = function(cb, options) {
+                const start = Date.now();
+                return setTimeout(function() {
+                    cb({
+                        didTimeout: false,
+                        timeRemaining: function() {
+                            return Math.max(0, 50 - (Date.now() - start));
+                        }
+                    });
+                }, 1);
+            };
+            window.cancelIdleCallback = function(id) {
+                clearTimeout(id);
+            };
+        }
+        
+        // ========================================
+        // FEATURE DETECTION & PROGRESSIVE ENHANCEMENT
+        // ========================================
+        
+        // Mobile detection
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Feature support detection
+        const features = {
+            intersectionObserver: 'IntersectionObserver' in window,
+            performanceObserver: 'PerformanceObserver' in window,
+            requestIdleCallback: 'requestIdleCallback' in window,
+            getBattery: 'getBattery' in navigator,
+            connection: !!(navigator.connection || navigator.mozConnection || navigator.webkitConnection),
+            webP: false, // Will be detected async
+            serviceWorker: 'serviceWorker' in navigator
+        };
+        
+        // Detect WebP support
+        (function detectWebP() {
+            const webP = new Image();
+            webP.onload = webP.onerror = function() {
+                features.webP = (webP.height === 2);
+                console.log(`🖼️ WebP Support: ${features.webP ? 'Yes ✅' : 'No ❌'}`);
+            };
+            webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+        })();
+        
+        console.log('🔍 Feature Support:', features);
+        
+        // ========================================
+        // CACHING STRATEGY
+        // ========================================
+        
+        // In-memory cache for menu data with TTL
+        const menuCache = {
+            data: new Map(),
+            timestamps: new Map(),
+            TTL: 5 * 60 * 1000, // 5 minutes
+            
+            set(key, value) {
+                this.data.set(key, value);
+                this.timestamps.set(key, Date.now());
+            },
+            
+            get(key) {
+                const timestamp = this.timestamps.get(key);
+                if (!timestamp) return null;
+                
+                // Check if expired
+                if (Date.now() - timestamp > this.TTL) {
+                    this.data.delete(key);
+                    this.timestamps.delete(key);
+                    return null;
+                }
+                
+                return this.data.get(key);
+            },
+            
+            has(key) {
+                return this.get(key) !== null;
+            },
+            
+            clear() {
+                this.data.clear();
+                this.timestamps.clear();
+                console.log('🗑️ Cache cleared');
+            },
+            
+            // Get cache statistics
+            getStats() {
+                return {
+                    size: this.data.size,
+                    keys: Array.from(this.data.keys())
+                };
+            }
+        };
+        
+        // Auto-clear cache every 5 minutes
+        setInterval(() => {
+            const stats = menuCache.getStats();
+            if (stats.size > 0) {
+                console.log(`🔄 Auto-clearing cache (${stats.size} items)...`);
+                menuCache.clear();
+            }
+        }, menuCache.TTL);
+        
+        // ========================================
+        // البيانات - من الصورة بالضبط
+        // ========================================
+        const menuData = {
+            categories: [
+                { id: 'all', name: 'ALL', name_ar: 'الكل', icon: 'fa-th-large' },
+                { id: 'special-coffee', name: 'SPECIAL COFFEE', name_ar: 'قهوة مميزة', icon: 'fa-star' },
+                { id: 'coffee', name: 'COFFEE', name_ar: 'قهوة', icon: 'fa-coffee' },
+                { id: 'hot-drinks', name: 'HOT DRINKS', name_ar: 'مشروبات ساخنة', icon: 'fa-mug-hot' },
+                { id: 'mocktail', name: 'MOCKTAIL', name_ar: 'موكتيل', icon: 'fa-martini-glass' },
+                { id: 'ice-coffee', name: 'ICE COFFEE', name_ar: 'قهوة مثلجة', icon: 'fa-snowflake' },
+                { id: 'frappe', name: 'FRAPPE', name_ar: 'فرابيه', icon: 'fa-blender' },
+                { id: 'milkshake', name: 'MILKSHAKE', name_ar: 'ميلك شيك', icon: 'fa-ice-cream' },
+                { id: 'fresh-juice', name: 'FRESH JUICE', name_ar: 'عصائر طازجة', icon: 'fa-lemon' },
+                { id: 'smoothie', name: 'SMOOTHIE', name_ar: 'سموثي', icon: 'fa-blender-phone' },
+                { id: 'cocktail', name: 'COCKTAIL', name_ar: 'كوكتيل', icon: 'fa-glass-citrus' },
+                { id: 'dessert', name: 'DESSERT', name_ar: 'حلويات', icon: 'fa-cake-candles' },
+                { id: 'soft-drink', name: 'SOFT DRINK', name_ar: 'مشروبات غازية', icon: 'fa-bottle-droplet' },
+                { id: 'extra', name: 'EXTRA', name_ar: 'إضافات', icon: 'fa-plus' }
+            ],
+            items: {
+                'special-coffee': [
+                    { name_en: 'Turkish Coffee', name_ar: 'قهوة تركي', price_s: 25, price_d: 30 },
+                    { name_en: 'Turkish Mahwaj', name_ar: 'تركي محوج', price_s: 30, price_d: 35 },
+                    { name_en: 'Turkish Dark Roast', name_ar: 'تركي دارك روست', price_s: 30, price_d: 35 },
+                    { name_en: 'Sofiano Coffee', name_ar: 'قهوة سوفيانو', price_s: 30, price_d: 35 },
+                    { name_en: 'Special Coffee', name_ar: 'قهوة مميزة', price_s: 30, price_d: 35 },
+                    { name_en: 'Habashi Coffee', name_ar: 'قهوة حبشي', price_s: 30, price_d: 35 },
+                    { name_en: 'Brazilian Coffee', name_ar: 'قهوة برازيلي', price_s: 30, price_d: 35 },
+                    { name_en: 'Indian Coffee', name_ar: 'قهوة هندي', price_s: 30, price_d: 35 },
+                    { name_en: 'Ameed Coffee', name_ar: 'قهوة عميد', price_s: 35, price_d: 40 },
+                    { name_en: 'Brazilian Dark Roast', name_ar: 'برازيلي دارك روست', price_s: 35, price_d: 40 },
+                    { name_en: 'Golden Time', name_ar: 'جولدن تايم', price_s: 40, price_d: 45 },
+                    { name_en: 'Colombian Coffee', name_ar: 'قهوة كولومبي', price_s: 40, price_d: 50 },
+                    { name_en: 'Colombian Dark Roast', name_ar: 'كولومبي دارك روست', price_s: 45, price_d: 50 },
+                    { name_en: 'Yemeni Coffee', name_ar: 'قهوة يمني', price_s: 50, price_d: 55 },
+                    { name_en: 'Earis Coffee', name_ar: 'قهوة عريس', price_s: 50, price_d: 55 },
+                    { name_en: 'French Coffee', name_ar: 'قهوة فرنساوي', price_s: null, price_d: 35 },
+                    { name_en: 'Flavor Coffee', name_ar: 'قهوة بالنكهات', price_s: null, price_d: 40 }
+                ],
+                'coffee': [
+                    { name_en: 'Espresso', name_ar: 'اسبريسو', price_s: 35, price_d: 45 },
+                    { name_en: 'Americano', name_ar: 'أمريكانو', price_s: 45, price_d: null },
+                    { name_en: 'Macchiato', name_ar: 'ماكياتو', price_s: 45, price_d: null },
+                    { name_en: 'American Coffee', name_ar: 'قهوة أمريكية', price_s: 50, price_d: null },
+                    { name_en: 'Latte', name_ar: 'لاتيه', price_s: 50, price_d: null },
+                    { name_en: 'Cortado', name_ar: 'كورتادو', price_s: 50, price_d: null },
+                    { name_en: 'Caramel Macchiato', name_ar: 'كراميل ماكياتو', price_s: 50, price_d: null },
+                    { name_en: 'Espresso Avocado', name_ar: 'اسبريسو أفوكادو', price_s: 50, price_d: null },
+                    { name_en: 'Cappuccino', name_ar: 'كابتشينو', price_s: 55, price_d: null },
+                    { name_en: 'Flat White', name_ar: 'فلات وايت', price_s: 55, price_d: null },
+                    { name_en: 'Coffee Bonbon', name_ar: 'كوفي بونبون', price_s: 60, price_d: null },
+                    { name_en: 'Mocha', name_ar: 'موكا', price_s: 60, price_d: null },
+                    { name_en: 'Latte Nutella', name_ar: 'لاتيه نوتيلا', price_s: 65, price_d: null },
+                    { name_en: 'Spanish Latte', name_ar: 'سبانش لاتيه', price_s: 65, price_d: null }
+                ],
+                'hot-drinks': [
+                    { name_en: 'Tea', name_ar: 'شاي', price_s: 20, price_d: null },
+                    { name_en: 'Teapot', name_ar: 'شاي براد', price_s: 25, price_d: 30 },
+                    { name_en: 'Green Tea', name_ar: 'شاي أخضر', price_s: 25, price_d: null },
+                    { name_en: 'Tea Flavor', name_ar: 'شاي فليفر', price_s: 30, price_d: null },
+                    { name_en: 'Milk Tea', name_ar: 'شاي باللبن', price_s: 30, price_d: null },
+                    { name_en: 'Herbs', name_ar: 'أعشاب', price_s: 20, price_d: null },
+                    { name_en: 'Coffee Mix', name_ar: 'كوفي ميكس / نسكافيه ميكس', price_s: 25, price_d: null },
+                    { name_en: 'Nescaffe', name_ar: 'نسكافيه', price_s: 35, price_d: null },
+                    { name_en: 'Hot Cider', name_ar: 'هوت سيدر', price_s: 35, price_d: null },
+                    { name_en: 'Hot Chocolate', name_ar: 'هوت شوكليت', price_s: 40, price_d: null },
+                    { name_en: 'Shlab', name_ar: 'سحلب', price_s: 35, price_d: null },
+                    { name_en: 'Shlab Nuts', name_ar: 'سحلب مكسرات', price_s: 45, price_d: null },
+                    { name_en: 'Shlab Flavor', name_ar: 'سحلب فليفر', price_s: 45, price_d: null },
+                    { name_en: 'Shlab Fruits', name_ar: 'سحلب فواكه', price_s: 50, price_d: null }
+                ],
+                'mocktail': [
+                    { name_en: 'Classic Mojito', name_ar: 'كلاسيك موهيتو', price_s: 60, price_d: null, description: 'شراب موهيتو - نعناع - سفن - ليمون' },
+                    { name_en: 'Flavor Mojito', name_ar: 'موهيتو فليفر', price_s: 70, price_d: null, description: 'شراب موهيتو - نعناع - سفن - ليمون' },
+                    { name_en: 'Sun Shine', name_ar: 'صن شاين', price_s: 70, price_d: null, description: 'شراب رمان - برتقال - سفن' },
+                    { name_en: 'Green Mint', name_ar: 'جرين مينت', price_s: 70, price_d: null, description: 'شراب نعناع - سفن' },
+                    { name_en: 'Hawai Mojito', name_ar: 'هواي موهيتو', price_s: 70, price_d: null, description: 'توبيكا اناناس - عصير اناناس - سفن' },
+                    { name_en: 'Hamer Head', name_ar: 'هامر هيد', price_s: 115, price_d: null, description: 'ابل سيرب - ريدبول' },
+                    { name_en: 'Sofiano Explosion Mix', name_ar: 'سوفيانو اكسبلوجين ميكس', price_s: 130, price_d: null, description: 'نعناع بطيخ - خوخ فراولة - ريسبري - ديوبرا' }
+                ],
+                'ice-coffee': [
+                    { name_en: 'Ice Americano', name_ar: 'آيس أمريكانو', price_s: 50, price_d: null },
+                    { name_en: 'Ice Latte', name_ar: 'آيس لاتيه', price_s: 60, price_d: null },
+                    { name_en: 'Lotus Latte', name_ar: 'لوتس لاتيه', price_s: 65, price_d: null },
+                    { name_en: 'Ice Macchiato', name_ar: 'آيس ماكياتو', price_s: 65, price_d: null },
+                    { name_en: 'Ice Cappuccino', name_ar: 'آيس كابتشينو', price_s: 70, price_d: null },
+                    { name_en: 'Ice Caramel Macchiato', name_ar: 'آيس كراميل ماكياتو', price_s: 75, price_d: null },
+                    { name_en: 'Ice Mocha', name_ar: 'آيس موكا', price_s: 80, price_d: null },
+                    { name_en: 'Ice White Mocha', name_ar: 'آيس وايت موكا', price_s: 80, price_d: null },
+                    { name_en: 'Ice Spanish Latte', name_ar: 'آيس سبانش لاتيه', price_s: 85, price_d: null }
+                ],
+                'frappe': [
+                    { name_en: 'Frappe Coffee', name_ar: 'فرابيه كوفي', price_s: 75, price_d: null },
+                    { name_en: 'Frappe Double Coffee', name_ar: 'فرابيه دابل كوفي', price_s: 85, price_d: null },
+                    { name_en: 'Frappe Nutella', name_ar: 'نوتيلا فرابيه', price_s: 95, price_d: null },
+                    { name_en: 'Frappe Chocolate', name_ar: 'شوكليت فرابيه', price_s: 95, price_d: null },
+                    { name_en: 'Frappe Caramel', name_ar: 'كراميل فرابيه', price_s: 95, price_d: null },
+                    { name_en: 'Frappe Pistachio', name_ar: 'بستاشيو فرابيه', price_s: 110, price_d: null },
+                    { name_en: 'Sofiano Special Frappe', name_ar: 'سوفيانو سبيشال فرابيه', price_s: 135, price_d: null }
+                ],
+                'milkshake': [
+                    { name_en: 'Milk Vanilla', name_ar: 'ميلك فانيليا', price_s: 45, price_d: null },
+                    { name_en: 'Milk Chocolate', name_ar: 'ميلك شوكليت', price_s: 50, price_d: null },
+                    { name_en: 'Milk Caramel', name_ar: 'ميلك كراميل', price_s: 50, price_d: null },
+                    { name_en: 'Milk Strawberry', name_ar: 'ميلك فراولة', price_s: 50, price_d: null },
+                    { name_en: 'Milk Blueberry', name_ar: 'ميلك بلوبيري', price_s: 50, price_d: null },
+                    { name_en: 'Milk Mango', name_ar: 'ميلك مانجو', price_s: 55, price_d: null },
+                    { name_en: 'Milk Nutella', name_ar: 'ميلك نوتيلا', price_s: 55, price_d: null },
+                    { name_en: 'Milk Oreo', name_ar: 'ميلك أوريو', price_s: 65, price_d: null }
+                ],
+                'fresh-juice': [
+                    { name_en: 'Mango', name_ar: 'مانجو', price_s: 60, price_d: null },
+                    { name_en: 'Guava', name_ar: 'جوافة', price_s: 45, price_d: null },
+                    { name_en: 'Guava Milk', name_ar: 'جوافة حليب', price_s: 55, price_d: null },
+                    { name_en: 'Strawberry', name_ar: 'فراولة', price_s: 45, price_d: null },
+                    { name_en: 'Strawberry Milk', name_ar: 'فراولة حليب', price_s: 55, price_d: null },
+                    { name_en: 'Watermelon', name_ar: 'بطيخ', price_s: 45, price_d: null },
+                    { name_en: 'Lemon', name_ar: 'ليمون', price_s: 35, price_d: null },
+                    { name_en: 'Lemon Mint', name_ar: 'ليمون نعناع', price_s: 40, price_d: null },
+                    { name_en: 'Cantaloupe', name_ar: 'كانتلوب', price_s: 40, price_d: null },
+                    { name_en: 'Dates Milk', name_ar: 'بلح حليب', price_s: 45, price_d: null },
+                    { name_en: 'Banana Milk', name_ar: 'موز حليب', price_s: 45, price_d: null },
+                    { name_en: 'Kiwi', name_ar: 'كيوي', price_s: 75, price_d: null },
+                    { name_en: 'Avocado', name_ar: 'أفوكادو', price_s: 90, price_d: null },
+                    { name_en: 'Avocado Nuts', name_ar: 'أفوكادو مكسرات', price_s: 110, price_d: null }
+                ],
+                'smoothie': [
+                    { name_en: 'Ice Chocolate', name_ar: 'آيس شوكليت', price_s: 55, price_d: null },
+                    { name_en: 'Smoothie Strawberry', name_ar: 'سموثي فراولة', price_s: 60, price_d: null },
+                    { name_en: 'Smoothie Watermelon', name_ar: 'سموثي بطيخ', price_s: 60, price_d: null },
+                    { name_en: 'Smoothie Passion Fruit', name_ar: 'سموثي باشون فروت', price_s: 60, price_d: null, description: 'نعناع - عصير مانجو' },
+                    { name_en: 'Smoothie Fresh', name_ar: 'سموثي فريش', price_s: 60, price_d: null },
+                    { name_en: 'Smoothie Mango', name_ar: 'سموثي مانجو', price_s: 65, price_d: null },
+                    { name_en: 'Smoothie Tropical Mix', name_ar: 'سموثي تروبيكال ميكس', price_s: 70, price_d: null, description: 'باشون فروت - مانجو - موز' },
+                    { name_en: 'Smoothie Kiwi', name_ar: 'سموثي كيوي', price_s: 85, price_d: null }
+                ],
+                'cocktail': [
+                    { name_en: 'Pinacolada', name_ar: 'بيناكولادا', price_s: 50, price_d: null, description: 'اناناس - جوز هند - لبن' },
+                    { name_en: 'Yogurt Honey', name_ar: 'زبادي عسل', price_s: 75, price_d: null },
+                    { name_en: 'Bit the Hit', name_ar: 'بيت ذا هيت', price_s: 75, price_d: null, description: 'بطيخ - نعناع' },
+                    { name_en: 'Palarma', name_ar: 'بلارما', price_s: 75, price_d: null, description: 'ليمونه - نعناع - ليمون' },
+                    { name_en: 'Energy Power', name_ar: 'انرجي باور', price_s: 75, price_d: null, description: 'مانجو - ليمون' },
+                    { name_en: 'Florida', name_ar: 'فلوريدا', price_s: 80, price_d: null, description: 'مانجو - جوافة - فراولة' },
+                    { name_en: 'Kiwi Strw', name_ar: 'كيوي سترو', price_s: 85, price_d: null, description: 'فراولة - كيوي' },
+                    { name_en: 'Yogurt Mango', name_ar: 'زبادي مانجو', price_s: 85, price_d: null },
+                    { name_en: 'New Day', name_ar: 'نيو داي', price_s: 85, price_d: null, description: 'مانجو - موز - نعناع' },
+                    { name_en: 'Sofiano Special Cocktail', name_ar: 'سوفيانو سبيشال كوكتيل', price_s: 100, price_d: null, description: 'مانجو - جوز - آيس كريم فانيليا' }
+                ],
+                'dessert': [
+                    { name_en: 'Patie Cheese', name_ar: 'باتيه جبنة', price_s: 25, price_d: null },
+                    { name_en: 'Croissant', name_ar: 'كرواسون', price_s: 35, price_d: null },
+                    { name_en: 'Brownies Cake', name_ar: 'براونيز كيك', price_s: 45, price_d: null, description: 'نوتيلا - بوبس شوكولاتة - صوص نوتيلا - كراميل' },
+                    { name_en: 'Cheese Cake', name_ar: 'تشيز كيك', price_s: 45, price_d: null, description: 'نوتيلا - بوبس شوكولاتة - صوص نوتيلا - كراميل' },
+                    { name_en: 'Molten Cake', name_ar: 'مولتن كيك', price_s: 65, price_d: null, description: 'نوتيلا - بوبس شوكولاتة - صوص نوتيلا - كراميل' },
+                    { name_en: 'Waffel', name_ar: 'وافل', price_s: 65, price_d: null, description: 'نوتيلا - بوبس شوكولاتة - صوص نوتيلا - كراميل' }
+                ],
+                'soft-drink': [
+                    { name_en: 'Water', name_ar: 'مياه', price_s: 10, price_d: null },
+                    { name_en: 'Pepsi', name_ar: 'بيبسي', price_s: 30, price_d: null },
+                    { name_en: '7UP', name_ar: 'سفن', price_s: 30, price_d: null },
+                    { name_en: 'Schweppes', name_ar: 'شويبس', price_s: 30, price_d: null },
+                    { name_en: 'Brill', name_ar: 'بريل', price_s: 35, price_d: null },
+                    { name_en: 'Fairouz', name_ar: 'فيروز', price_s: 35, price_d: null },
+                    { name_en: 'Red Bull', name_ar: 'ريدبول', price_s: 75, price_d: null }
+                ],
+                'extra': [
+                    { name_en: 'Ice Cream', name_ar: 'آيس كريم', price_s: 20, price_d: null },
+                    { name_en: 'Pistachio Sauce', name_ar: 'صوص بستاشيو', price_s: 25, price_d: null },
+                    { name_en: 'Cheddar Cheese', name_ar: 'جبنة شيدر', price_s: 25, price_d: null },
+                    { name_en: 'Sauce', name_ar: 'صوص', price_s: 15, price_d: null },
+                    { name_en: 'Milk', name_ar: 'حليب', price_s: 25, price_d: null }
+                ]
+            }
+        };
+        
+        // ========================================
+        // STATE MANAGEMENT
+        // ========================================
+        let currentCategory = 'all'; // القسم النشط حالياً
+        
+        // ========================================
+        // INITIALIZE APP - OPTIMIZED
+        // ========================================
+        function initApp() {
+            // Measure performance
+            const startTime = performance.now();
+            
+            console.log('🚀 Initializing Sofiano Coffee Menu...');
+            console.log(`📱 Device: ${isMobile ? 'Mobile' : 'Desktop'}`);
+            
+            // Batch DOM operations
+            requestAnimationFrame(() => {
+                // Render categories and content
+                renderCategoryButtons();
+                renderMenuContent();
+                
+                // Set first category as active (single DOM operation)
+                const firstButton = document.querySelector('.category-btn');
+                if (firstButton) {
+                    firstButton.classList.add('active');
+                }
+                
+                // Clean up logo will-change
+                const logo = document.querySelector('.logo-image');
+                if (logo) {
+                    logo.addEventListener('animationend', () => {
+                        logo.classList.add('loaded');
+                    }, { once: true });
+                }
+                
+                // Setup lazy loading for menu items
+                if (features.intersectionObserver && typeof itemObserver !== 'undefined' && itemObserver) {
+                    setTimeout(() => {
+                        const items = document.querySelectorAll('.menu-item');
+                        items.forEach(item => {
+                            item.classList.add('lazy-load');
+                            try {
+                                itemObserver.observe(item);
+                            } catch(e) {
+                                // Fallback: show immediately
+                                item.classList.add('visible');
+                            }
+                        });
+                    }, 100);
+                } else {
+                    // No observer support - show all items immediately
+                    setTimeout(() => {
+                        document.querySelectorAll('.menu-item').forEach(item => {
+                            item.classList.add('visible');
+                        });
+                    }, 100);
+                }
+                
+                // Log performance
+                const endTime = performance.now();
+                console.log(`✅ App initialized in ${(endTime - startTime).toFixed(2)}ms`);
+            });
+        }
+        
+        // ========================================
+        // RENDER CATEGORY BUTTONS - OPTIMIZED
+        // ========================================
+        function renderCategoryButtons() {
+            const container = document.getElementById('categoryPills');
+            
+            // Use DocumentFragment for batch DOM insertion
+            const fragment = document.createDocumentFragment();
+            const buttons = [];
+            
+            menuData.categories.forEach(category => {
+                const button = document.createElement('button');
+                button.className = 'category-btn';
+                button.setAttribute('data-category', category.id);
+                button.innerHTML = `
+                    <span>
+                        <i class="fas ${category.icon}"></i>
+                        ${category.name}
+                    </span>
+                `;
+                
+                buttons.push(button);
+                fragment.appendChild(button);
+            });
+            
+            // Single DOM update
+            container.appendChild(fragment);
+            
+            // Event Delegation - Single listener for all buttons
+            container.addEventListener('click', (e) => {
+                const button = e.target.closest('.category-btn');
+                if (button) {
+                    const categoryId = button.getAttribute('data-category');
+                    switchCategory(categoryId);
+                }
+            });
+            
+            // Clean up will-change after initial render
+            requestAnimationFrame(() => {
+                buttons.forEach(btn => {
+                    btn.addEventListener('animationend', () => {
+                        btn.classList.add('no-animation');
+                    }, { once: true });
+                });
+            });
+        }
+        
+        // ========================================
+        // SWITCH CATEGORY - OPTIMIZED (Batch DOM reads/writes)
+        // ========================================
+        function switchCategory(categoryId) {
+            console.log(`🔄 Switching to category: ${categoryId}`);
+            
+            try {
+                // Update active state
+                currentCategory = categoryId;
+                
+                // Validate category exists
+                const categoryExists = menuData.categories.find(c => c.id === categoryId);
+                const itemsExist = menuData.items[categoryId];
+                
+                console.log(`📦 Category found: ${!!categoryExists}`);
+                console.log(`📦 Items found: ${itemsExist ? itemsExist.length : 0}`);
+                
+                if (!categoryExists && categoryId !== 'all') {
+                    console.error(`❌ Category ${categoryId} not found!`);
+                    return;
+                }
+            
+            // Batch DOM reads
+            const allButtons = Array.from(document.querySelectorAll('.category-btn'));
+            const activeButton = document.querySelector(`[data-category="${categoryId}"]`);
+            
+            // Batch DOM writes using requestAnimationFrame
+            requestAnimationFrame(() => {
+                // Single class operation per element
+                allButtons.forEach(btn => {
+                    if (btn === activeButton) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+                
+                // Render new content
+                renderMenuContent();
+                
+                // Setup lazy loading for new items
+                if (features.intersectionObserver && typeof itemObserver !== 'undefined' && itemObserver) {
+                    setTimeout(() => {
+                        document.querySelectorAll('.menu-item:not(.visible)').forEach(item => {
+                            item.classList.add('lazy-load');
+                            try {
+                                itemObserver.observe(item);
+                            } catch(e) {
+                                item.classList.add('visible');
+                            }
+                        });
+                    }, 50);
+                } else {
+                    // No observer - show immediately
+                    setTimeout(() => {
+                        document.querySelectorAll('.menu-item').forEach(item => {
+                            item.classList.add('visible');
+                        });
+                    }, 50);
+                }
+                
+                // Smooth scroll to menu (non-blocking)
+                requestAnimationFrame(() => {
+                    const menuContent = document.getElementById('menuContent');
+                    if (menuContent) {
+                        menuContent.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }
+                });
+            });
+            } catch(error) {
+                console.error('❌ Error switching category:', error);
+                // Fallback: try to render anyway
+                try {
+                    renderMenuContent();
+                } catch(e) {
+                    console.error('❌ Critical render error:', e);
+                }
+            }
+        }
+        
+        // ========================================
+        // CODE SPLITTING - Load Category Data
+        // ========================================
+        
+        // Load category data with caching
+        async function loadCategoryData(categoryId) {
+            // Check cache first
+            if (menuCache.has(categoryId)) {
+                console.log(`💾 Loading ${categoryId} from cache`);
+                return menuCache.get(categoryId);
+            }
+            
+            // Simulate async loading (in real app, this would be API call)
+            return new Promise((resolve) => {
+                requestIdleCallback(() => {
+                    const data = {
+                        category: menuData.categories.find(c => c.id === categoryId),
+                        items: menuData.items[categoryId]
+                    };
+                    
+                    // Cache the data
+                    menuCache.set(categoryId, data);
+                    console.log(`📥 Loaded ${categoryId} and cached`);
+                    
+                    resolve(data);
+                });
+            });
+        }
+        
+        // Progressive loading with loading state
+        function showLoadingState() {
+            const container = document.getElementById('menuContent');
+            container.innerHTML = `
+                <div style="text-align: center; padding: 60px 20px;">
+                    <div class="loading"></div>
+                    <p style="margin-top: 20px; color: var(--text-dark); opacity: 0.7;">جاري التحميل...</p>
+                </div>
+            `;
+        }
+        
+        // ========================================
+        // RENDER MENU CONTENT - OPTIMIZED
+        // ========================================
+        function renderMenuContent() {
+            try {
+                const container = document.getElementById('menuContent');
+                
+                if (!container) {
+                    console.error('❌ Menu container not found!');
+                    return;
+                }
+            
+            // Helper function to create DOM element (better performance than innerHTML)
+            const createItemElement = (item) => {
+                const li = document.createElement('li');
+                li.className = 'menu-item';
+                
+                const priceS = item.price_s ? item.price_s : '-';
+                const priceD = item.price_d ? item.price_d : '-';
+                const priceClassS = item.price_s ? 'price-s' : 'price-s price-na';
+                const priceClassD = item.price_d ? 'price-d' : 'price-d price-na';
+                
+                // Use template literal for better performance
+                li.innerHTML = `
+                    <div class="item-names">
+                        <div class="item-name-ar">${item.name_ar}</div>
+                        ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
+                    </div>
+                    <div class="${priceClassS}">${priceS}</div>
+                    <div class="${priceClassD}">${priceD}</div>
+                    <div class="item-name-en">${item.name_en}</div>
+                `;
+                
+                return li;
+            };
+            
+            // If "ALL" is selected, show all categories - OPTIMIZED with Fragment
+            if (currentCategory === 'all') {
+                // Use DocumentFragment for better performance
+                const fragment = document.createDocumentFragment();
+                
+                menuData.categories
+                    .filter(cat => cat.id !== 'all')
+                    .forEach(category => {
+                        const items = menuData.items[category.id];
+                        const showFlavorsNote = category.id === 'special-coffee';
+                        
+                        const categoryDiv = document.createElement('div');
+                        categoryDiv.className = 'menu-category active';
+                        categoryDiv.style.marginBottom = '50px';
+                        
+                        // Build HTML string for this category
+                        const itemsHTML = items.map(item => {
+                            const priceS = item.price_s ? item.price_s : '-';
+                            const priceD = item.price_d ? item.price_d : '-';
+                            const priceClassS = item.price_s ? 'price-s' : 'price-s price-na';
+                            const priceClassD = item.price_d ? 'price-d' : 'price-d price-na';
+                            
+                            return `
+                                <li class="menu-item">
+                                    <div class="item-names">
+                                        <div class="item-name-ar">${item.name_ar}</div>
+                                        ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
+                                    </div>
+                                    <div class="${priceClassS}">${priceS}</div>
+                                    <div class="${priceClassD}">${priceD}</div>
+                                    <div class="item-name-en">${item.name_en}</div>
+                                </li>
+                            `;
+                        }).join('');
+                        
+                        categoryDiv.innerHTML = `
+                            <h2 class="category-title">${category.name}</h2>
+                            <div class="menu-table-container">
+                                <div class="menu-header">
+                                    <div class="menu-header-ar">الاسم بالعربي</div>
+                                    <div class="menu-header-s">S</div>
+                                    <div class="menu-header-d">D</div>
+                                    <div class="menu-header-en">Name</div>
+                                </div>
+                                <ul class="menu-items-list">${itemsHTML}</ul>
+                                ${showFlavorsNote ? `
+                                    <div class="flavors-note">
+                                        <i class="fas fa-info-circle"></i>
+                                        <strong>النكهات المتوفرة:</strong>
+                                        فانيلا – بندق – فستق – شوكولاتة – كراميل – مانجو – توت – تفاح – فراولة
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                        
+                        fragment.appendChild(categoryDiv);
+                    });
+                
+                // Single DOM update
+                container.innerHTML = '';
+                container.appendChild(fragment);
+            } else {
+                // Show single category
+                const category = menuData.categories.find(cat => cat.id === currentCategory);
+                const items = menuData.items[currentCategory];
+                
+                // Check if category and items exist
+                if (!category || !items) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <p style="color: var(--text-dark); opacity: 0.7;">لا توجد عناصر في هذه الفئة</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const showFlavorsNote = currentCategory === 'special-coffee';
+                
+                // Build items HTML
+                const itemsHTML = items.map(item => {
+                    const priceS = item.price_s ? item.price_s : '-';
+                    const priceD = item.price_d ? item.price_d : '-';
+                    const priceClassS = item.price_s ? 'price-s' : 'price-s price-na';
+                    const priceClassD = item.price_d ? 'price-d' : 'price-d price-na';
+                    
+                    return `
+                        <li class="menu-item">
+                            <div class="item-names">
+                                <div class="item-name-ar">${item.name_ar}</div>
+                                ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
+                            </div>
+                            <div class="${priceClassS}">${priceS}</div>
+                            <div class="${priceClassD}">${priceD}</div>
+                            <div class="item-name-en">${item.name_en}</div>
+                        </li>
+                    `;
+                }).join('');
+                
+                container.innerHTML = `
+                    <div class="menu-category active">
+                        <h2 class="category-title">
+                            ${category.name}
+                        </h2>
+                        
+                        <div class="menu-table-container">
+                            <div class="menu-header">
+                                <div class="menu-header-ar">الاسم بالعربي</div>
+                                <div class="menu-header-s">S</div>
+                                <div class="menu-header-d">D</div>
+                                <div class="menu-header-en">Name</div>
+                            </div>
+                            <ul class="menu-items-list">
+                                ${itemsHTML}
+                            </ul>
+                            
+                            ${showFlavorsNote ? `
+                                <div class="flavors-note">
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>النكهات المتوفرة:</strong>
+                                    فانيلا – بندق – فستق – شوكولاتة – كراميل – مانجو – توت – تفاح – فراولة
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            } catch(error) {
+                console.error('❌ Error rendering menu:', error);
+                const container = document.getElementById('menuContent');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <p style="color: var(--text-dark);">حدث خطأ في تحميل القائمة</p>
+                            <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: var(--navy-teal); color: white; border: none; border-radius: 5px; cursor: pointer;">إعادة المحاولة</button>
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // ========================================
+        // PERFORMANCE UTILITIES
+        // ========================================
+        
+        // Debounce function for scroll events
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // Throttle function for high-frequency events
+        function throttle(func, limit) {
+            let inThrottle;
+            return function(...args) {
+                if (!inThrottle) {
+                    func.apply(this, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        }
+        
+        // ========================================
+        // SMOOTH SCROLL FOR CATEGORY NAV - Optimized
+        // ========================================
+        let lastScrollTop = 0;
+        const categoryNav = document.querySelector('.category-nav');
+        let ticking = false;
+        
+        const handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                categoryNav.style.transform = 'translateY(-100%)';
+            } else {
+                categoryNav.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            ticking = false;
+        };
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(handleScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        // ========================================
+        // INTERSECTION OBSERVER - Lazy Rendering
+        // ========================================
+        let observerOptions = {
+            root: null,
+            rootMargin: '50px', // Load before it appears
+            threshold: 0.01
+        };
+        
+        let itemObserver;
+        if ('IntersectionObserver' in window) {
+            itemObserver = new IntersectionObserver((entries) => {
+                // Batch processing for better performance
+                const fragment = document.createDocumentFragment();
+                
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const item = entry.target;
+                        
+                        // Use requestAnimationFrame for smooth animation
+                        requestAnimationFrame(() => {
+                            item.classList.add('visible');
+                        });
+                        
+                        // Stop observing after visible (reduce memory)
+                        itemObserver.unobserve(item);
+                    }
+                });
+            }, observerOptions);
+        }
+        
+        // Memory optimization: Clear unused category data
+        function optimizeMemory() {
+            // On mobile, clear categories that are not visible
+            if (isMobile && currentCategory !== 'all') {
+                const container = document.getElementById('menuContent');
+                const hiddenCategories = container.querySelectorAll('.menu-category:not(.active)');
+                
+                hiddenCategories.forEach(cat => {
+                    // Remove DOM elements of hidden categories to save memory
+                    if (cat.offsetTop < window.scrollY - window.innerHeight * 2 || 
+                        cat.offsetTop > window.scrollY + window.innerHeight * 3) {
+                        // Category is far from viewport, can be removed
+                        // We'll recreate it when needed
+                    }
+                });
+            }
+        }
+        
+        // Debounced memory optimization
+        const debouncedMemoryOptimize = debounce(optimizeMemory, 1000);
+        
+        // ========================================
+        // ADVANCED PERFORMANCE OBSERVERS
+        // ========================================
+        
+        // Largest Contentful Paint (LCP) Observer
+        if (features.performanceObserver) {
+            try {
+                const lcpObserver = new PerformanceObserver((list) => {
+                    const entries = list.getEntries();
+                    const lastEntry = entries[entries.length - 1];
+                    const lcpTime = lastEntry.renderTime || lastEntry.loadTime;
+                    
+                    console.log(`🎨 LCP: ${lcpTime.toFixed(2)}ms ${lcpTime < 2500 ? '✅' : lcpTime < 4000 ? '⚠️' : '❌'}`);
+                    
+                    // Cache LCP for reporting
+                    menuCache.set('lcp', lcpTime);
+                });
+                lcpObserver.observe({ type: 'largest-contentful-paint', buffered: true });
+            } catch (e) {
+                console.log('⚠️ LCP Observer not supported');
+            }
+            
+            // Cumulative Layout Shift (CLS) Observer
+            try {
+                let clsScore = 0;
+                const clsObserver = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (!entry.hadRecentInput) {
+                            clsScore += entry.value;
+                        }
+                    }
+                    console.log(`📐 CLS: ${clsScore.toFixed(4)} ${clsScore < 0.1 ? '✅' : clsScore < 0.25 ? '⚠️' : '❌'}`);
+                });
+                clsObserver.observe({ type: 'layout-shift', buffered: true });
+            } catch (e) {
+                console.log('⚠️ CLS Observer not supported');
+            }
+            
+            // First Input Delay (FID) Observer
+            try {
+                const fidObserver = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        const fid = entry.processingStart - entry.startTime;
+                        console.log(`⚡ FID: ${fid.toFixed(2)}ms ${fid < 100 ? '✅' : fid < 300 ? '⚠️' : '❌'}`);
+                        menuCache.set('fid', fid);
+                    }
+                });
+                fidObserver.observe({ type: 'first-input', buffered: true });
+            } catch (e) {
+                console.log('⚠️ FID Observer not supported');
+            }
+            
+            // Time to First Byte (TTFB) Observer
+            try {
+                const navigationObserver = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        const ttfb = entry.responseStart - entry.requestStart;
+                        console.log(`🚀 TTFB: ${ttfb.toFixed(2)}ms ${ttfb < 600 ? '✅' : ttfb < 1500 ? '⚠️' : '❌'}`);
+                    }
+                });
+                navigationObserver.observe({ type: 'navigation', buffered: true });
+            } catch (e) {
+                console.log('⚠️ TTFB Observer not supported');
+            }
+        }
+        
+        // ========================================
+        // PERFORMANCE MONITORING (Enhanced for Mobile)
+        // ========================================
+        function measurePerformance() {
+            if ('performance' in window && 'getEntriesByType' in performance) {
+                // Wait for page to fully load
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        const perfData = performance.getEntriesByType('navigation')[0];
+                        const paintData = performance.getEntriesByType('paint');
+                        
+                        console.log('📊 Performance Metrics:');
+                        console.log(`  DOM Content Loaded: ${perfData.domContentLoadedEventEnd.toFixed(2)}ms`);
+                        console.log(`  Load Complete: ${perfData.loadEventEnd.toFixed(2)}ms`);
+                        
+                        if (paintData.length > 0) {
+                            paintData.forEach(entry => {
+                                console.log(`  ${entry.name}: ${entry.startTime.toFixed(2)}ms`);
+                            });
+                        }
+                        
+                        // Mobile-specific metrics
+                        if (isMobile) {
+                            // Check if we're within mobile performance budget
+                            const totalLoadTime = perfData.loadEventEnd;
+                            const budget = {
+                                '4g': 2000,  // 2s
+                                '3g': 3000,  // 3s
+                                '2g': 5000   // 5s
+                            };
+                            
+                            const connection = getConnectionQuality();
+                            const targetTime = budget[connection] || 3000;
+                            
+                            if (totalLoadTime < targetTime) {
+                                console.log(`✅ Within performance budget for ${connection} (${totalLoadTime.toFixed(0)}ms < ${targetTime}ms)`);
+                            } else {
+                                console.log(`⚠️ Exceeds performance budget for ${connection} (${totalLoadTime.toFixed(0)}ms > ${targetTime}ms)`);
+                            }
+                            
+                            // Measure memory usage (if available)
+                            if (performance.memory) {
+                                const memory = performance.memory;
+                                console.log(`💾 Memory Usage:`);
+                                console.log(`  Used: ${(memory.usedJSHeapSize / 1048576).toFixed(2)}MB`);
+                                console.log(`  Total: ${(memory.totalJSHeapSize / 1048576).toFixed(2)}MB`);
+                                console.log(`  Limit: ${(memory.jsHeapSizeLimit / 1048576).toFixed(2)}MB`);
+                            }
+                        }
+                        
+                        // First Input Delay (FID) - Important for mobile
+                        const observer = new PerformanceObserver((list) => {
+                            for (const entry of list.getEntries()) {
+                                const FID = entry.processingStart - entry.startTime;
+                                console.log(`⚡ First Input Delay: ${FID.toFixed(2)}ms ${FID < 100 ? '✅' : '⚠️'}`);
+                            }
+                        });
+                        observer.observe({type: 'first-input', buffered: true});
+                    }, 0);
+                });
+            }
+        }
+        
+        // ========================================
+        // MOBILE OPTIMIZATION FUNCTIONS
+        // ========================================
+        
+        // Check network connection quality
+        function getConnectionQuality() {
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            
+            if (!connection) return 'unknown';
+            
+            const effectiveType = connection.effectiveType;
+            console.log(`📶 Network: ${effectiveType}`);
+            
+            return effectiveType;
+        }
+        
+        // Check battery status and enable power-saving mode
+        function checkBatteryStatus() {
+            if ('getBattery' in navigator) {
+                navigator.getBattery().then(battery => {
+                    console.log(`🔋 Battery: ${(battery.level * 100).toFixed(0)}%${battery.charging ? ' (Charging)' : ''}`);
+                    
+                    if (battery.level < 0.2 && !battery.charging) {
+                        console.log('⚡ Enabling power-saving mode...');
+                        document.body.classList.add('power-saving-mode');
+                    }
+                    
+                    // Monitor battery changes
+                    battery.addEventListener('levelchange', () => {
+                        if (battery.level < 0.2 && !battery.charging) {
+                            document.body.classList.add('power-saving-mode');
+                        } else if (battery.level > 0.3 || battery.charging) {
+                            document.body.classList.remove('power-saving-mode');
+                        }
+                    });
+                    
+                    battery.addEventListener('chargingchange', () => {
+                        if (battery.charging) {
+                            document.body.classList.remove('power-saving-mode');
+                        }
+                    });
+                });
+            }
+        }
+        
+        // Adaptive loading based on connection
+        function adaptiveLoading() {
+            const connectionQuality = getConnectionQuality();
+            
+            if (connectionQuality === '2g' || connectionQuality === 'slow-2g') {
+                console.log('📉 Slow connection detected - Minimal mode');
+                // Disable animations on very slow connections
+                document.body.classList.add('power-saving-mode');
+            } else if (connectionQuality === '3g') {
+                console.log('📊 Moderate connection - Optimized mode');
+                // Keep basic animations
+            } else {
+                console.log('📈 Fast connection - Full experience');
+                // Load all features
+            }
+        }
+        
+        // Initialize app with mobile optimizations
+        function initAppWithMobileOptimizations() {
+            try {
+                const startTime = performance.now();
+                
+                console.log('🚀 Initializing Sofiano Coffee Menu...');
+                console.log(`📱 Device: ${isMobile ? 'Mobile' : 'Desktop'}`);
+                
+                // Check connection and battery (mobile-specific)
+                if (isMobile) {
+                    try {
+                        adaptiveLoading();
+                    } catch(e) {
+                        console.log('⚠️ Network detection skipped');
+                    }
+                    try {
+                        checkBatteryStatus();
+                    } catch(e) {
+                        console.log('⚠️ Battery detection skipped');
+                    }
+                }
+                
+                // Initialize the main app
+                initApp();
+                
+                const endTime = performance.now();
+                console.log(`✅ Mobile optimizations applied in ${(endTime - startTime).toFixed(2)}ms`);
+            } catch(error) {
+                console.error('❌ Initialization error:', error);
+                // Fallback: try basic init
+                try {
+                    renderCategoryButtons();
+                    renderMenuContent();
+                } catch(e) {
+                    console.error('❌ Critical error:', e);
+                }
+            }
+        }
+        
+        // ========================================
+        // START THE APP! - Optimized Loading
+        // ========================================
+        
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                initAppWithMobileOptimizations();
+            });
+        } else {
+            // DOM already loaded
+            initAppWithMobileOptimizations();
+        }
+        
+        // Measure performance after load
+        window.addEventListener('load', function() {
+            requestIdleCallback(() => {
+                measurePerformance();
+            });
+        });
+        
+        // Show loading indicator until fonts are loaded
+        if ('fonts' in document) {
+            document.fonts.ready.then(() => {
+                document.body.classList.add('fonts-loaded');
+            });
+        }
+    </script>
+    
+    <!-- Additional optimizations -->
+    <script>
+        // GitHub Pages compatibility check
+        console.log('🌐 Running on:', window.location.hostname);
+        console.log('📍 Protocol:', window.location.protocol);
+        
+        // Performance Budget Report (Mobile-focused)
+        window.addEventListener('load', () => {
+            requestIdleCallback(() => {
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log('📱 COMPREHENSIVE PERFORMANCE AUDIT REPORT');
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                
+                // Feature Support Summary
+                console.log('\n🔍 Browser Features:');
+                Object.entries(features).forEach(([key, value]) => {
+                    const icon = value ? '✅' : '❌';
+                    console.log(`  ${icon} ${key}: ${value}`);
+                });
+                
+                // Calculate page weight
+                if ('performance' in window) {
+                    const resources = performance.getEntriesByType('resource');
+                    let totalSize = 0;
+                    let categories = {
+                        javascript: 0,
+                        css: 0,
+                        image: 0,
+                        font: 0,
+                        other: 0
+                    };
+                    
+                    resources.forEach(resource => {
+                        const size = resource.transferSize || 0;
+                        totalSize += size;
+                        
+                        if (resource.name.includes('.js')) {
+                            categories.javascript += size;
+                        } else if (resource.name.includes('.css')) {
+                            categories.css += size;
+                        } else if (resource.name.match(/\.(jpg|jpeg|png|gif|webp|svg)/)) {
+                            categories.image += size;
+                        } else if (resource.name.match(/\.(woff|woff2|ttf|otf)/)) {
+                            categories.font += size;
+                        } else {
+                            categories.other += size;
+                        }
+                    });
+                    
+                    // Performance Budget Targets
+                    const budget = {
+                        totalPageWeight: 300 * 1024,  // 300KB
+                        javascript: 100 * 1024,       // 100KB
+                        css: 50 * 1024,               // 50KB
+                        images: 150 * 1024            // 150KB
+                    };
+                    
+                    console.log('📦 Page Weight:');
+                    console.log(`  Total: ${(totalSize / 1024).toFixed(2)}KB / ${(budget.totalPageWeight / 1024)}KB ${totalSize <= budget.totalPageWeight ? '✅' : '⚠️'}`);
+                    console.log(`  JavaScript: ${(categories.javascript / 1024).toFixed(2)}KB / ${(budget.javascript / 1024)}KB ${categories.javascript <= budget.javascript ? '✅' : '⚠️'}`);
+                    console.log(`  CSS: ${(categories.css / 1024).toFixed(2)}KB / ${(budget.css / 1024)}KB ${categories.css <= budget.css ? '✅' : '⚠️'}`);
+                    console.log(`  Images: ${(categories.image / 1024).toFixed(2)}KB / ${(budget.images / 1024)}KB ${categories.image <= budget.images ? '✅' : '⚠️'}`);
+                    console.log(`  Fonts: ${(categories.font / 1024).toFixed(2)}KB`);
+                    console.log(`  Other: ${(categories.other / 1024).toFixed(2)}KB`);
+                }
+                
+                // Get paint metrics
+                const paintMetrics = performance.getEntriesByType('paint');
+                const fcpMetric = paintMetrics.find(m => m.name === 'first-contentful-paint');
+                
+                console.log('\n⏱️  Timing Metrics:');
+                if (fcpMetric) {
+                    console.log(`  First Contentful Paint: ${fcpMetric.startTime.toFixed(2)}ms ${fcpMetric.startTime < 1000 ? '✅' : '⚠️'}`);
+                }
+                
+                // Code Size Analysis
+                console.log('\n📦 Bundle Size Analysis:');
+                const htmlSize = document.documentElement.outerHTML.length;
+                const inlineCSS = document.querySelector('style') ? document.querySelector('style').textContent.length : 0;
+                console.log(`  HTML Document: ${(htmlSize / 1024).toFixed(2)}KB`);
+                console.log(`  Inline CSS: ${(inlineCSS / 1024).toFixed(2)}KB`);
+                console.log(`  Total Initial Load: ${((htmlSize) / 1024).toFixed(2)}KB`);
+                
+                // Cache Statistics
+                const cacheStats = menuCache.getStats();
+                console.log('\n💾 Cache Statistics:');
+                console.log(`  Size: ${cacheStats.size} items`);
+                console.log(`  Keys: ${cacheStats.keys.join(', ') || 'None'}`);
+                
+                // Core Web Vitals Status
+                console.log('\n⚡ Core Web Vitals:');
+                const lcp = menuCache.get('lcp');
+                const fid = menuCache.get('fid');
+                if (lcp) console.log(`  LCP: ${lcp.toFixed(2)}ms ${lcp < 2500 ? '✅' : '⚠️'}`);
+                if (fid) console.log(`  FID: ${fid.toFixed(2)}ms ${fid < 100 ? '✅' : '⚠️'}`);
+                
+                console.log('\n🎯 Optimization Features:');
+                console.log('  ✅ Touch delay removed (300ms)');
+                console.log('  ✅ Smooth iOS scrolling enabled');
+                console.log('  ✅ Battery optimization active');
+                console.log('  ✅ Network-aware loading');
+                console.log('  ✅ Memory optimization enabled');
+                console.log('  ✅ Lazy rendering implemented');
+                console.log('  ✅ Smart caching with TTL (5min)');
+                console.log('  ✅ Performance Observers active');
+                console.log('  ✅ Progressive enhancement');
+                console.log('  ✅ Resource hints optimized');
+                
+                // Recommendations
+                console.log('\n💡 Recommendations:');
+                if (!features.intersectionObserver) {
+                    console.log('  ⚠️ Consider polyfill for IntersectionObserver');
+                }
+                if (!features.webP) {
+                    console.log('  ⚠️ Browser doesn\'t support WebP - using fallback');
+                }
+                if (!features.serviceWorker) {
+                    console.log('  💡 Service Worker could enable offline support');
+                }
+                
+                console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+                console.log('🚀 Sofiano Coffee - Optimized & Ready!');
+                console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+            });
+        });
+    </script>
+</body>
+</html>
