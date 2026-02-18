@@ -840,14 +840,14 @@
             ],
             items: {
                 'offers': [
-                    { src: 'assets/images/offers/1.png', alt: 'Ramadan Offer 1' },
-                    { src: 'assets/images/offers/2.png', alt: 'Ramadan Offer 2' },
-                    { src: 'assets/images/offers/3.png', alt: 'Ramadan Offer 3' },
-                    { src: 'assets/images/offers/4.png', alt: 'Ramadan Offer 4' },
-                    { src: 'assets/images/offers/5.png', alt: 'Ramadan Offer 5' },
-                    { src: 'assets/images/offers/6.png', alt: 'Ramadan Offer 6' },
-                    { src: 'assets/images/offers/7.png', alt: 'Ramadan Offer 7' },
-                    { src: 'assets/images/offers/8.png', alt: 'Ramadan Offer 8' }
+                    { src: 'assets/images/offers/hh.png', alt: 'Ramadan Offer 1' },
+                    { src: 'assets/images/offers/ih.png', alt: 'Ramadan Offer 2' },
+                    { src: 'assets/images/offers/j9.png', alt: 'Ramadan Offer 3' },
+                    { src: 'assets/images/offers/jiojo.png', alt: 'Ramadan Offer 4' },
+                    { src: 'assets/images/offers/jj.png', alt: 'Ramadan Offer 5' },
+                    { src: 'assets/images/offers/kkpk.png', alt: 'Ramadan Offer 6' },
+                    { src: 'assets/images/offers/ko.png', alt: 'Ramadan Offer 7' },
+                    { src: 'assets/images/offers/mk.png', alt: 'Ramadan Offer 8' }
                 ],
                 'special-coffee': [
                     { name_en: 'Turkish Coffee', name_ar: 'قهوة تركي', price_s: 25, price_d: 30 },
@@ -1069,7 +1069,7 @@
                     if (cat.id === 'offers') {
                         let offersHtml = items.map(item => `
                             <div class="offer-card" onclick="openLightbox('${item.src}')">
-                                <img src="${item.src}" class="offer-image" alt="${item.alt}" loading="lazy" onerror="this.src='https://placehold.co/400x400/0F2B2B/D4AF37?text=Ramadan+Offer'">
+                                <img src="${item.src}" class="offer-image" alt="${item.alt}" loading="eager" onerror="this.src='assets/images/placeholder.jpg'">
                             </div>
                         `).join('');
 
