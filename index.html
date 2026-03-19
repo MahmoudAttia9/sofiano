@@ -6,14 +6,14 @@
     <!-- Mobile-optimized viewport -->
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <meta name="description" content="Sofiano Coffee Menu - قائمة مقهى سوفيانو الإسكندرية - رمضان كريم">
+    <meta name="description" content="Sofiano Coffee Menu - قائمة مقهى سوفيانو الإسكندرية - أجواء العيد">
     <meta name="theme-color" content="#0F2B2B">
 
     <!-- Mobile Web App Capable -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Sofiano Ramadan">
+    <meta name="apple-mobile-web-app-title" content="Sofiano Eid">
 
     <meta name="format-detection" content="telephone=no">
 
@@ -31,7 +31,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Reem+Kufi:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap">
 
-    <title>Sofiano Menu - Ramadan Kareem | قائمة سوفيانو</title>
+    <title>Sofiano Menu - Eid Vibes | قائمة سوفيانو</title>
 
     <style>
         /* ========================================
@@ -43,6 +43,8 @@
             --gold: #D4AF37;
             --gold-glow: #F9E5B0;
             --beige-cream: #F5E6D3;
+            --eid-peach: #F6C183;
+            --eid-mint: #CFEFE0;
             --white: #FFFFFF;
             --text-dark: #1B4D4D;
         }
@@ -63,9 +65,9 @@
 
         body {
             font-family: 'Cairo', 'Poppins', sans-serif;
-            background: #FFF9F0;
-            background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px), radial-gradient(#D4AF37 0.5px, #FFF9F0 0.5px);
-            background-size: 20px 20px;
+            background: linear-gradient(180deg, #fffaf2 0%, #fff6e8 45%, #fef3df 100%);
+            background-image: radial-gradient(rgba(212, 175, 55, 0.22) 0.7px, transparent 0.7px), radial-gradient(rgba(21, 64, 63, 0.12) 0.7px, #fff9f0 0.7px);
+            background-size: 22px 22px;
             background-position: 0 0, 10px 10px;
             background-attachment: fixed;
             /* Parallax feel */
@@ -81,7 +83,7 @@
            HEADER SECTION (OPTIMIZED ANIMATIONS)
         ======================================== */
         .header-section {
-            background: radial-gradient(circle at center bottom, #1B4D4D 0%, #0F2B2B 60%, #051a1a 100%);
+            background: radial-gradient(circle at center bottom, #1f5e5d 0%, #0F2B2B 58%, #041616 100%);
             padding: 80px 20px 80px;
             /* Extra padding bottom for wave */
             text-align: center;
@@ -238,6 +240,12 @@
             }
         }
 
+        @keyframes float-balloon {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+            100% { transform: translateY(0) rotate(-2deg); }
+        }
+
         /* LOGO STYLES */
         .logo-container {
             position: relative;
@@ -281,7 +289,7 @@
         }
 
         .ramadan-badge {
-            background: rgba(212, 175, 55, 0.2);
+            background: linear-gradient(120deg, rgba(212, 175, 55, 0.2), rgba(246, 193, 131, 0.25));
             border: 1px solid var(--gold);
             color: var(--white);
             padding: 5px 20px;
@@ -290,6 +298,7 @@
             display: inline-block;
             margin-top: 10px;
             backdrop-filter: blur(4px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
         /* Added English Text Style */
@@ -310,19 +319,48 @@
             padding: 15px 0;
             position: sticky;
             top: 0;
-            background: rgba(255, 249, 240, 0.95);
+            background: linear-gradient(90deg, rgba(255, 249, 240, 0.94), rgba(246, 193, 131, 0.08), rgba(207, 239, 224, 0.34));
             /* High contrast background */
             backdrop-filter: blur(10px);
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 8px 20px rgba(15, 43, 43, 0.08);
+            border-top: 1px solid rgba(212, 175, 55, 0.25);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .category-head {
+            max-width: 980px;
+            margin: 0 auto 10px;
+            padding: 0 15px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .category-head h3 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--dark-teal);
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+        }
+
+        .category-head span {
+            font-size: 0.76rem;
+            color: #5e7f7e;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
         }
 
         .category-pills {
             display: flex;
             gap: 10px;
             overflow-x: auto;
-            padding: 0 15px;
+            padding: 0 15px 2px;
             scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+            max-width: 980px;
+            margin: 0 auto;
         }
 
         .category-pills::-webkit-scrollbar {
@@ -330,27 +368,82 @@
         }
 
         .category-btn {
-            padding: 8px 20px;
-            border: 1px solid var(--navy-teal);
-            background: transparent;
+            padding: 10px 12px;
+            border: 1px solid rgba(15, 43, 43, 0.45);
+            background: rgba(255, 255, 255, 0.76);
             color: var(--navy-teal);
-            border-radius: 50px;
+            border-radius: 16px;
             font-family: 'Cairo', sans-serif;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             cursor: pointer;
             white-space: nowrap;
-            display: flex;
+            display: grid;
+            grid-template-columns: auto 1fr;
             align-items: center;
-            gap: 6px;
-            transition: transform 0.2s, background 0.2s;
+            gap: 8px;
+            transition: transform 0.2s, background 0.2s, box-shadow 0.2s, border-color 0.2s;
+            box-shadow: 0 2px 8px rgba(15, 43, 43, 0.08);
+            min-width: 140px;
+            scroll-snap-align: center;
+            text-align: right;
+        }
+
+        .category-btn .icon-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.22), rgba(255, 255, 255, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            color: #815f1e;
+        }
+
+        .category-btn .labels {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.1;
+        }
+
+        .category-btn .label-ar {
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: #143b3a;
+        }
+
+        .category-btn .label-en {
+            font-size: 0.66rem;
+            opacity: 0.75;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
         }
 
         .category-btn.active {
-            background: var(--navy-teal);
-            color: var(--gold);
+            background: linear-gradient(120deg, #0f2b2b, #1b4d4d);
+            color: var(--gold-glow);
             border-color: var(--navy-teal);
-            transform: scale(1.05);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(15, 43, 43, 0.22);
+        }
+
+        .category-btn.active .icon-badge {
+            background: linear-gradient(135deg, rgba(249, 229, 176, 0.95), rgba(212, 175, 55, 0.88));
+            color: #0f2b2b;
+            border-color: rgba(249, 229, 176, 0.75);
+        }
+
+        .category-btn.active .label-ar,
+        .category-btn.active .label-en {
+            color: var(--gold-glow);
+        }
+
+        .category-btn:hover {
+            transform: translateY(-1px);
+            border-color: var(--gold);
         }
 
         /* Content Visibility: The magic property for performance */
@@ -366,6 +459,28 @@
             max-width: 900px;
             margin: 20px auto;
             padding: 0 15px;
+        }
+
+        .menu-intro {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(255, 255, 255, 0.85), rgba(207, 239, 224, 0.48));
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin: 8px 0 22px;
+            text-align: center;
+            box-shadow: 0 10px 24px rgba(15, 43, 43, 0.07);
+        }
+
+        .menu-intro h2 {
+            font-family: 'Reem Kufi', sans-serif;
+            color: var(--dark-teal);
+            margin-bottom: 6px;
+            font-size: 1.2rem;
+        }
+
+        .menu-intro p {
+            color: #265a59;
+            font-size: 0.92rem;
         }
 
         .category-title {
@@ -392,83 +507,137 @@
         }
 
         .menu-table-container {
-            background: #fff;
-            border-radius: 12px;
-            /* Simple shadow for performance */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            overflow: hidden;
+            /* Removed old table style, replaced with Grid */
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 5px;
+        }
+
+        @media (min-width: 768px) {
+            .menu-table-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .menu-item {
-            display: grid;
-            grid-template-columns: 1fr auto auto 1fr;
-            gap: 10px;
-            padding: 15px;
-            align-items: center;
-            border-bottom: 1px solid #f0f0f0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .menu-item:last-child {
-            border-bottom: none;
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+        }
+
+        .menu-item:hover::before {
+            opacity: 1;
+        }
+
+        .item-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .item-names {
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
         }
 
         .item-name-ar {
+            font-family: 'Cairo', sans-serif;
             font-weight: 700;
             color: var(--navy-teal);
+            font-size: 1.15rem;
+            line-height: 1.2;
+        }
+
+        .item-name-en {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted rgba(212, 175, 55, 0.3);
+            margin: 0 15px 6px 15px;
+            min-width: 30px;
+        }
+
+        .item-prices {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .price-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fffafa;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 4px 10px;
+            min-width: 55px;
+        }
+
+        .price-badge span.size {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .price-badge span.amount {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #C59D5F;
             font-size: 1.05rem;
+            line-height: 1;
         }
 
         .item-description {
             font-size: 0.8rem;
-            color: #888;
-            margin-top: 2px;
-        }
-
-        .item-name-en {
-            font-size: 0.85rem;
-            color: #999;
-            text-align: left;
-        }
-
-        .price-s,
-        .price-d {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #C59D5F;
-            font-size: 1.1rem;
-            width: 45px;
-            text-align: center;
-            background: #fcfcfc;
+            color: #666;
+            margin-top: 8px;
+            background: #fdfbf7;
+            padding: 8px 12px;
             border-radius: 6px;
-            padding: 2px 0;
+            border-right: 2px solid var(--gold);
         }
 
-        .price-na {
-            color: #eee;
-            background: transparent;
-        }
-
+        /* Hide old headers & classes */
         .menu-header {
-            display: grid;
-            grid-template-columns: 1fr auto auto 1fr;
-            gap: 10px;
-            padding: 10px 15px;
-            background: #fbfbfb;
-            color: var(--text-dark);
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-bottom: 2px solid var(--gold);
-        }
-
-        .menu-header div:nth-child(2),
-        .menu-header div:nth-child(3) {
-            width: 45px;
-            text-align: center;
-        }
-
-        .menu-header div:last-child {
-            text-align: left;
+            display: none;
         }
 
         /* ========================================
@@ -593,6 +762,7 @@
             border: 2px solid var(--gold);
             transform: scale(0.8);
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            object-fit: contain;
         }
 
         .lightbox-modal.active .lightbox-content {
@@ -662,6 +832,19 @@
             text-align: center;
             margin-top: 40px;
             border-top: 4px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(246, 193, 131, 0.2), transparent 70%);
         }
 
         .social-icon {
@@ -691,49 +874,76 @@
                 padding-top: 60px;
             }
 
-            /* Simplify list for mobile */
-            .menu-header {
-                display: none;
-            }
-
             .menu-item {
-                display: block;
-                position: relative;
+                padding: 15px;
             }
 
-            .item-names {
-                margin-bottom: 8px;
+            .item-name-ar {
+                font-size: 1.05rem;
             }
 
-            /* Price badges */
-            .menu-item .price-s,
-            .menu-item .price-d {
-                display: inline-block;
-                margin-left: 5px;
+            .item-name-en {
+                font-size: 0.75rem;
+            }
+            
+            .price-badge {
+                min-width: 45px;
+                padding: 3px 6px;
+            }
+
+            .price-badge span.size {
+                font-size: 0.6rem;
+            }
+
+            .price-badge span.amount {
                 font-size: 0.95rem;
             }
 
-            .menu-item .price-s::before {
-                content: 'S ';
-                font-size: 0.7rem;
-                color: #aaa;
+            .item-dots {
+                margin: 0 8px 6px 8px;
+                min-width: 15px;
             }
 
-            .menu-item .price-d::before {
-                content: 'D ';
-                font-size: 0.7rem;
-                color: #aaa;
+            .menu-intro {
+                margin-top: 4px;
+                border-radius: 14px;
+                padding: 12px 14px;
             }
 
-            .item-name-en {
-                display: none;
+            .category-head {
+                margin-bottom: 8px;
             }
 
-            /* Optional: Hide English name on very small screens to save space? Keeping it for now but simplified */
-            .item-name-en {
-                display: block;
-                font-size: 0.8rem;
-                margin-top: 5px;
+            .category-btn {
+                min-width: 132px;
+                border-radius: 14px;
+            }
+
+            .category-btn .icon-badge {
+                width: 30px;
+                height: 30px;
+            }
+
+            .category-btn .label-ar {
+                font-size: 0.82rem;
+            }
+
+            .category-btn .label-en {
+                font-size: 0.63rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .category-pills {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+                overflow: visible;
+                gap: 10px;
+            }
+
+            .category-btn {
+                min-width: 0;
+                width: 100%;
             }
         }
     </style>
@@ -742,8 +952,8 @@
 <body>
 
     <!-- LIGHTBOX MODAL -->
-    <div class="lightbox-modal" id="imageModal" onclick="closeLightbox()">
-        <span class="lightbox-close">&times;</span>
+    <div class="lightbox-modal" id="imageModal" onclick="if(event.target === this) closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()" tabindex="0" aria-label="Close Lightbox" onkeypress="if(event.key === 'Enter') closeLightbox()">&times;</span>
         <img src="" alt="Offer Full View" class="lightbox-content" id="lightboxImg">
     </div>
 
@@ -751,31 +961,51 @@
     <header class="header-section">
         <div class="stars"></div> <!-- Twinkling Background -->
 
-        <!-- Decorations -->
+        <!-- Eid Decorations -->
         <div class="ramadan-decorations">
+            <!-- Balloons -->
+            <div class="hanging-item balloon-1" style="left: 10%; position: absolute; transform-origin: bottom center; animation: float-balloon 5s ease-in-out infinite;">
+                <i class="fas fa-balloon" style="color: #ff6b6b; font-size: 3rem; text-shadow: 0 0 15px rgba(255,107,107,0.6);"></i>
+                <div class="string" style="height: 50px; background: rgba(255,255,255,0.4); width: 1px; margin: 0 auto;"></div>
+            </div>
+            <div class="hanging-item balloon-2" style="left: 25%; top: 30px; position: absolute; transform-origin: bottom center; animation: float-balloon 4s ease-in-out infinite alternate;">
+                <i class="fas fa-balloon" style="color: #4ecdc4; font-size: 2.5rem; text-shadow: 0 0 15px rgba(78,205,196,0.6);"></i>
+                <div class="string" style="height: 40px; background: rgba(255,255,255,0.4); width: 1px; margin: 0 auto;"></div>
+            </div>
+            <div class="hanging-item balloon-3" style="right: 15%; position: absolute; transform-origin: bottom center; animation: float-balloon 6s ease-in-out infinite;">
+                <i class="fas fa-balloon" style="color: #feca57; font-size: 3.5rem; text-shadow: 0 0 15px rgba(254,202,87,0.6);"></i>
+                <div class="string" style="height: 60px; background: rgba(255,255,255,0.4); width: 1px; margin: 0 auto;"></div>
+            </div>
+
+            <!-- Existing Hanging Items with Eid colors -->
             <div class="hanging-item decor-1 swing-slow">
                 <div class="string" style="height: 100%"></div>
-                <i class="fas fa-kaaba"></i>
+                <i class="fas fa-gift" style="color: #ff9ff3;"></i>
             </div>
             <div class="hanging-item decor-2 swing-fast">
                 <div class="string" style="height: 100%"></div>
-                <i class="fas fa-star"></i>
+                <i class="fas fa-moon" style="color: var(--gold-glow);"></i>
             </div>
             <div class="hanging-item decor-3 swing-slow">
                 <div class="string" style="height: 100%"></div>
-                <i class="fas fa-mosque"></i>
+                <i class="fas fa-music" style="color: #54a0ff;"></i>
             </div>
             <div class="hanging-item decor-4 swing-med">
                 <div class="string" style="height: 100%"></div>
-                <i class="fas fa-moon"></i>
+                <i class="fas fa-star" style="color: var(--gold);"></i>
+            </div>
+            <!-- Extra Eid Confetti -->
+            <div class="hanging-item decor-5 swing-fast" style="right: 5%; height: 180px;">
+                <div class="string" style="height: 100%"></div>
+                <i class="fas fa-candy-cane" style="color: #00d2d3;"></i>
             </div>
         </div>
 
         <div class="logo-container gpu-accelerated">
             <img src="assets/images/1.png" alt="Sofiano Logo" class="logo-image" width="280" height="280">
             <h1 class="logo-text">SOFIANO</h1>
-            <div class="ramadan-badge">رمضان كريم</div>
-            <div class="ramadan-text-en">RAMADAN KAREEM</div>
+            <div class="ramadan-badge">عيد سعيد</div>
+            <div class="ramadan-text-en">EID MUBARAK</div>
         </div>
 
         <!-- Shape Divider Bottom -->
@@ -791,11 +1021,19 @@
 
     <!-- NAV -->
     <nav class="category-nav">
+        <div class="category-head">
+            <h3>اختار صنفك</h3>
+            <span>SELECT CATEGORY</span>
+        </div>
         <div class="category-pills" id="categoryPills"></div>
     </nav>
 
     <!-- MENU -->
     <main class="menu-container">
+        <section class="menu-intro">
+            <h2>منيو العيد في سوفيانو</h2>
+            <p>اختيارات قهوة وحلويات ومشروبات بأجواء احتفالية ولمسة احترافية في العرض.</p>
+        </section>
         <div id="menuContent"></div>
     </main>
 
@@ -808,12 +1046,19 @@
     <footer class="footer-section">
         <h3 style="font-family: 'Reem Kufi'; color: var(--gold); margin-bottom: 10px;">Sofiano Coffee</h3>
         <p style="opacity: 0.8; font-size: 0.9rem;">الإسكندرية - الفلكي شارع 16 الملك</p>
+        <p style="opacity: 0.95; font-size: 0.92rem; margin-top: 6px; color: var(--gold-glow);">كل سنة وأنتم طيبين - عيد سعيد</p>
         <div style="margin-top: 20px;">
             <a href="https://www.facebook.com/profile.php?id=61581021861746" target="_blank" class="social-icon"><i
                     class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/mahmoud_a_agay_9/" target="_blank" class="social-icon"><i
                     class="fab fa-instagram"></i></a>
             <a href="https://wa.me/201095031083" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div style="margin-top: 30px; font-size: 0.9rem; color: rgba(255, 255, 255, 0.85); border-top: 1px dashed rgba(212, 175, 55, 0.5); padding-top: 20px; max-width: 320px; margin-left: auto; margin-right: auto; font-family: 'Cairo', sans-serif; line-height: 1.6; letter-spacing: 0.3px;">
+            <span style="display: block; margin-bottom: 5px;">
+                صُمم وطُور باحترافية عالية <i class="fas fa-laptop-code" style="color: var(--gold); margin: 0 5px;"></i>
+            </span>
+            بواسطة المطور <strong>Mahmoud</strong>
         </div>
     </footer>
 
@@ -836,170 +1081,210 @@
                 { id: 'dessert', name: 'DESSERT', name_ar: 'حلويات', icon: 'fa-cookie-bite' },
                 { id: 'soft-drink', name: 'SOFT DRINK', name_ar: 'مشروبات غازية', icon: 'fa-bottle-droplet' },
                 { id: 'extra', name: 'EXTRA', name_ar: 'إضافات', icon: 'fa-plus' },
-                { id: 'offers', name: 'OFFERS', name_ar: 'عروض رمضان', icon: 'fa-gift' }
+                { id: 'offers', name: 'OFFERS', name_ar: 'عروض العيد', icon: 'fa-gift' }
             ],
             items: {
                 'offers': [
-                    { src: 'assets/images/offers/hh.webp', alt: 'Ramadan Offer 1' },
-                    { src: 'assets/images/offers/ih.webp', alt: 'Ramadan Offer 2' },
-                    { src: 'assets/images/offers/j9.webp', alt: 'Ramadan Offer 3' },
-                    { src: 'assets/images/offers/jiojo.webp', alt: 'Ramadan Offer 4' },
-                    { src: 'assets/images/offers/jj.webp', alt: 'Ramadan Offer 5' },
-                    { src: 'assets/images/offers/kkpk.webp', alt: 'Ramadan Offer 6' },
-                    { src: 'assets/images/offers/ko.webp', alt: 'Ramadan Offer 7' },
-                    { src: 'assets/images/offers/mk.webp', alt: 'Ramadan Offer 8' }
+                    { src: 'assets/images/offers/hh.webp', alt: 'Eid Offer 1' },
+                    { src: 'assets/images/offers/ih.webp', alt: 'Eid Offer 2' },
+                    { src: 'assets/images/offers/j9.webp', alt: 'Eid Offer 3' },
+                    { src: 'assets/images/offers/jiojo.webp', alt: 'Eid Offer 4' },
+                    { src: 'assets/images/offers/jj.webp', alt: 'Eid Offer 5' },
+                    { src: 'assets/images/offers/kkpk.webp', alt: 'Eid Offer 6' },
+                    { src: 'assets/images/offers/ko.webp', alt: 'Eid Offer 7' },
+                    { src: 'assets/images/offers/mk.webp', alt: 'Eid Offer 8' }
                 ],
                 'special-coffee': [
-                    { name_en: 'Turkish Coffee', name_ar: 'قهوة تركي', price_s: 25, price_d: 30 },
-                    { name_en: 'Turkish Mahwaj', name_ar: 'تركي محوج', price_s: 30, price_d: 35 },
-                    { name_en: 'Turkish Dark Roast', name_ar: 'تركي دارك روست', price_s: 30, price_d: 35 },
-                    { name_en: 'Sofiano Coffee', name_ar: 'قهوة سوفيانو', price_s: 30, price_d: 35 },
-                    { name_en: 'Special Coffee', name_ar: 'قهوة مميزة', price_s: 30, price_d: 35 },
-                    { name_en: 'Habashi Coffee', name_ar: 'قهوة حبشي', price_s: 30, price_d: 35 },
-                    { name_en: 'Brazilian Coffee', name_ar: 'قهوة برازيلي', price_s: 30, price_d: 35 },
-                    { name_en: 'Indian Coffee', name_ar: 'قهوة هندي', price_s: 30, price_d: 35 },
-                    { name_en: 'Ameed Coffee', name_ar: 'قهوة عميد', price_s: 35, price_d: 40 },
-                    { name_en: 'Brazilian Dark Roast', name_ar: 'برازيلي دارك روست', price_s: 35, price_d: 40 },
-                    { name_en: 'Golden Time', name_ar: 'جولدن تايم', price_s: 40, price_d: 45 },
-                    { name_en: 'Colombian Coffee', name_ar: 'قهوة كولومبي', price_s: 40, price_d: 50 },
-                    { name_en: 'Colombian Dark Roast', name_ar: 'كولومبي دارك روست', price_s: 45, price_d: 50 },
+                    { name_en: 'Turkish Coffee', name_ar: 'قهوة تركي', price_s: 30, price_d: 35 },
+                    { name_en: 'Turkish Mahwog', name_ar: 'قهوة محوج', price_s: 35, price_d: 40 },
+                    { name_en: 'Turkish Dark Roast', name_ar: 'قهوة غامق', price_s: 35, price_d: 40 },
+                    { name_en: 'Sofiano Coffee', name_ar: 'قهوة سفيانو', price_s: 35, price_d: 40 },
+                    { name_en: 'Special Coffee', name_ar: 'قهوة سبشيال', price_s: 35, price_d: 40 },
+                    { name_en: 'Habashi Coffee', name_ar: 'قهوة حبشي', price_s: 35, price_d: 40 },
+                    { name_en: 'Brazilian Coffee', name_ar: 'قهوة برازيلي', price_s: 35, price_d: 40 },
+                    { name_en: 'Indian Coffee', name_ar: 'قهوة هندي', price_s: 35, price_d: 40 },
+                    { name_en: 'Ameed Coffee', name_ar: 'قهوة عميد', price_s: 40, price_d: 45 },
+                    { name_en: 'Brazilian Dark', name_ar: 'قهوة برازيلي غامق', price_s: 40, price_d: 45 },
+                    { name_en: 'Black Bull Coffee', name_ar: 'قهوة بلاك بول', price_s: 40, price_d: 45 },
+                    { name_en: 'Colombian Coffee', name_ar: 'قهوة كولمبي', price_s: 40, price_d: 45 },
+                    { name_en: 'Colombian Dark', name_ar: 'قهوة كولمبي غامق', price_s: 45, price_d: 50 },
                     { name_en: 'Yemeni Coffee', name_ar: 'قهوة يمني', price_s: 50, price_d: 55 },
-                    { name_en: 'Earis Coffee', name_ar: 'قهوة عريس', price_s: 50, price_d: 55 },
-                    { name_en: 'French Coffee', name_ar: 'قهوة فرنساوي', price_s: null, price_d: 35 },
-                    { name_en: 'Flavor Coffee', name_ar: 'قهوة بالنكهات', price_s: null, price_d: 40 }
+                    { name_en: 'Groom Coffee', name_ar: 'قهوة العريس', price_s: 50, price_d: 55 },
+                    { name_en: 'French Coffee', name_ar: 'قهوة فرنساوي', price_s: 50, price_d: null },
+                    { name_en: 'Flavor Coffee', name_ar: 'قهوة فليفر', price_s: 60, price_d: null, description: 'بندق - فانيليا - شيكولاتة - كارميل - مانجو - توت - تفاح - فراولة' }
                 ],
                 'coffee': [
-                    { name_en: 'Espresso', name_ar: 'اسبريسو', price_s: 35, price_d: 45 },
-                    { name_en: 'Americano', name_ar: 'أمريكانو', price_s: 45, price_d: null },
-                    { name_en: 'Macchiato', name_ar: 'ماكياتو', price_s: 45, price_d: null },
-                    { name_en: 'American Coffee', name_ar: 'قهوة أمريكية', price_s: 50, price_d: null },
-                    { name_en: 'Latte', name_ar: 'لاتيه', price_s: 50, price_d: null },
-                    { name_en: 'Cortado', name_ar: 'كورتادو', price_s: 50, price_d: null },
-                    { name_en: 'Caramel Macchiato', name_ar: 'كراميل ماكياتو', price_s: 50, price_d: null },
-                    { name_en: 'Espresso Avocado', name_ar: 'اسبريسو أفوكادو', price_s: 50, price_d: null },
-                    { name_en: 'Cappuccino', name_ar: 'كابتشينو', price_s: 55, price_d: null },
-                    { name_en: 'Flat White', name_ar: 'فلات وايت', price_s: 55, price_d: null },
-                    { name_en: 'Coffee Bonbon', name_ar: 'كوفي بونبون', price_s: 60, price_d: null },
-                    { name_en: 'Mocha', name_ar: 'موكا', price_s: 60, price_d: null },
-                    { name_en: 'Latte Nutella', name_ar: 'لاتيه نوتيلا', price_s: 65, price_d: null },
-                    { name_en: 'Spanish Latte', name_ar: 'سبانش لاتيه', price_s: 65, price_d: null }
+                    { name_en: 'Espresso', name_ar: 'اسبريسو', price_s: 45, price_d: 55 },
+                    { name_en: 'Americano', name_ar: 'أمريكانو', price_s: 55, price_d: null },
+                    { name_en: 'Macchiato', name_ar: 'ميكاتو', price_s: 50, price_d: 60 },
+                    { name_en: 'American Coffee', name_ar: 'أمريكان كوفي', price_s: null, price_d: 70 },
+                    { name_en: 'Latte', name_ar: 'لاتيه', price_s: 55, price_d: null },
+                    { name_en: 'Cortado', name_ar: 'كورتاتو', price_s: 75, price_d: null },
+                    { name_en: 'Caramel Macchiato', name_ar: 'كارميل ميكاتو', price_s: 90, price_d: null },
+                    { name_en: 'Espresso Affogato', name_ar: 'سبريسو أفوجاتو', price_s: null, price_d: 60 },
+                    { name_en: 'Cappuccino', name_ar: 'كابتشينو', price_s: null, price_d: 70 },
+                    { name_en: 'Flat White', name_ar: 'فلات وايت', price_s: null, price_d: 65 },
+                    { name_en: 'Bonbon Coffee', name_ar: 'بنبون كوفي', price_s: null, price_d: 80 },
+                    { name_en: 'Mocha', name_ar: 'موكا', price_s: null, price_d: 65 },
+                    { name_en: 'Latte Nutella', name_ar: 'لاتيه نوتيلا', price_s: null, price_d: 65 },
+                    { name_en: 'Spanish Latte', name_ar: 'سبانش لاتيه', price_s: null, price_d: 80 },
+                    { name_en: 'Choco Chips', name_ar: 'شيكوشيبس', price_s: null, price_d: 85 },
+                    { name_en: 'Espresso Coffee Pan', name_ar: 'اسبريسو كوفي بان', price_s: null, price_d: 80 },
+                    { name_en: 'Lotus Coffee', name_ar: 'لوتس كوفي', price_s: null, price_d: 75 },
+                    { name_en: 'Piccolo', name_ar: 'بيكولو', price_s: null, price_d: 70 },
+                    { name_en: 'Pistachio Coffee', name_ar: 'بيستاشيو كوفي', price_s: null, price_d: 100 },
+                    { name_en: 'Caramel Coffee', name_ar: 'كراميل كوفي', price_s: null, price_d: 75 },
+                    { name_en: 'Nutella Coffee', name_ar: 'نوتيلا كوفي', price_s: null, price_d: 80 },
+                    { name_en: 'Colont', name_ar: 'كولونت', price_s: null, price_d: 85 },
+                    { name_en: 'After White', name_ar: 'أفتر وايت', price_s: null, price_d: 80 }
                 ],
                 'hot-drinks': [
-                    { name_en: 'Tea', name_ar: 'شاي', price_s: 20, price_d: null },
-                    { name_en: 'Teapot', name_ar: 'شاي براد', price_s: 25, price_d: 30 },
-                    { name_en: 'Green Tea', name_ar: 'شاي أخضر', price_s: 25, price_d: null },
-                    { name_en: 'Tea Flavor', name_ar: 'شاي فليفر', price_s: 30, price_d: null },
-                    { name_en: 'Milk Tea', name_ar: 'شاي باللبن', price_s: 30, price_d: null },
-                    { name_en: 'Herbs', name_ar: 'أعشاب', price_s: 20, price_d: null },
-                    { name_en: 'Coffee Mix', name_ar: 'كوفي ميكس / نسكافيه ميكس', price_s: 25, price_d: null },
-                    { name_en: 'Nescaffe', name_ar: 'نسكافيه', price_s: 35, price_d: null },
-                    { name_en: 'Hot Cider', name_ar: 'هوت سيدر', price_s: 35, price_d: null },
-                    { name_en: 'Hot Chocolate', name_ar: 'هوت شوكليت', price_s: 40, price_d: null },
-                    { name_en: 'Shlab', name_ar: 'سحلب', price_s: 35, price_d: null },
-                    { name_en: 'Shlab Nuts', name_ar: 'سحلب مكسرات', price_s: 45, price_d: null },
-                    { name_en: 'Shlab Flavor', name_ar: 'سحلب فليفر', price_s: 45, price_d: null },
-                    { name_en: 'Shlab Fruits', name_ar: 'سحلب فواكه', price_s: 50, price_d: null }
+                    { name_en: 'Tea', name_ar: 'شاي', price_s: 25, price_d: null },
+                    { name_en: 'Teapot', name_ar: 'شاي براد', price_s: 35, price_d: null },
+                    { name_en: 'Green Tea', name_ar: 'شاي أخضر', price_s: 30, price_d: null },
+                    { name_en: 'Tea Flavor', name_ar: 'شاي فليفر', price_s: 35, price_d: null },
+                    { name_en: 'Milk Tea', name_ar: 'شاي بلبن', price_s: 30, price_d: null },
+                    { name_en: 'Karak Tea', name_ar: 'شاي كرك', price_s: 45, price_d: null },
+                    { name_en: 'Herbs', name_ar: 'أعشاب', price_s: 20, price_d: null, description: 'كركديه - نعناع - ينسون - زنجبيل - تيلبو' },
+                    { name_en: 'Herbs Cocktail', name_ar: 'كوكتيل أعشاب', price_s: 45, price_d: null },
+                    { name_en: 'Nescafe Classic', name_ar: 'نسكافية كلاسيك', price_s: 55, price_d: null },
+                    { name_en: 'Nescafe Gold', name_ar: 'نسكافية جولد', price_s: 55, price_d: null },
+                    { name_en: 'Hot Cider', name_ar: 'هوت سيدر', price_s: 60, price_d: null },
+                    { name_en: 'Hot Chocolate', name_ar: 'هوت شوكليت', price_s: 60, price_d: null },
+                    { name_en: 'Sahlab Classic', name_ar: 'سحلب كلاسيك', price_s: 55, price_d: null },
+                    { name_en: 'Sahlab Nuts', name_ar: 'سحلب مكسرات', price_s: 65, price_d: null },
+                    { name_en: 'Sahlab Flavor', name_ar: 'سحلب فليفر', price_s: 75, price_d: null },
+                    { name_en: 'Sahlab Fruits', name_ar: 'سحلب فواكه', price_s: 75, price_d: null },
+                    { name_en: 'Sahlab Hazelnut', name_ar: 'سحلب بندق', price_s: 85, price_d: null },
+                    { name_en: 'Sahlab Pistachio', name_ar: 'سحلب بيستاشيو', price_s: 90, price_d: null },
+                    { name_en: 'Vitamin C', name_ar: 'فيتامين سي', price_s: 45, price_d: null },
+                    { name_en: 'Hot Chocolate Oreo', name_ar: 'هوت شوكليت أوريو', price_s: 65, price_d: null },
+                    { name_en: 'Hot Chocolate Lotus', name_ar: 'هوت شوكليت لوتس', price_s: 65, price_d: null },
+                    { name_en: 'Hot Chocolate Marshmallow', name_ar: 'هوت شوكليت مارشيمليو', price_s: 75, price_d: null }
                 ],
                 'mocktail': [
-                    { name_en: 'Classic Mojito', name_ar: 'كلاسيك موهيتو', price_s: 60, price_d: null, description: 'شراب موهيتو - نعناع - سفن - ليمون' },
-                    { name_en: 'Flavor Mojito', name_ar: 'موهيتو فليفر', price_s: 70, price_d: null, description: 'شراب موهيتو - نعناع - سفن - ليمون' },
-                    { name_en: 'Sun Shine', name_ar: 'صن شاين', price_s: 70, price_d: null, description: 'شراب رمان - برتقال - سفن' },
-                    { name_en: 'Green Mint', name_ar: 'جرين مينت', price_s: 70, price_d: null, description: 'شراب نعناع - سفن' },
-                    { name_en: 'Hawai Mojito', name_ar: 'هواي موهيتو', price_s: 70, price_d: null, description: 'توبيكا اناناس - عصير اناناس - سفن' },
-                    { name_en: 'Hamer Head', name_ar: 'هامر هيد', price_s: 115, price_d: null, description: 'ابل سيرب - ريدبول' },
-                    { name_en: 'Sofiano Explosion Mix', name_ar: 'سوفيانو اكسبلوجين ميكس', price_s: 130, price_d: null, description: 'نعناع بطيخ - خوخ فراولة - ريسبري - ديوبرا' }
+                    { name_en: 'Classic Mojito', name_ar: 'كلاسيك موهيتو', price_s: 80, price_d: null, description: 'سيرب موهيتو - نعناع - سفن - ليمون' },
+                    { name_en: 'Flavor Mojito', name_ar: 'موهيتو فليفر', price_s: 85, price_d: null, description: 'سيرب موهيتو - نعناع - توبينج - سفن - ليمون' },
+                    { name_en: 'Sun Shine', name_ar: 'صن شاين', price_s: 80, price_d: null, description: 'سيرب رمان - برتقال - سفن' },
+                    { name_en: 'Green Mint', name_ar: 'جرين مينت', price_s: 80, price_d: null, description: 'سيرب نعناع - سفن' },
+                    { name_en: 'Hawaii Mojito', name_ar: 'هواي موهيتو', price_s: 80, price_d: null, description: 'توبينج أناناس - بلوكراساو - عصير أناناس - سفن' },
+                    { name_en: 'Hammer Head', name_ar: 'هامر هيد', price_s: 140, price_d: null, description: 'دابل سبريسو - ريدبول' },
+                    { name_en: 'Sofiano Explosion', name_ar: 'سفيانو أكسلوجين ميكس', price_s: 155, price_d: null, description: 'قطع بطيخ - قطع فراوله - راسبيري - ريدبول' },
+                    { name_en: 'Jamaica', name_ar: 'جامايكا', price_s: 95, price_d: null },
+                    { name_en: 'Cherry Cola', name_ar: 'شيري كولا', price_s: 80, price_d: null },
+                    { name_en: 'Red Blood', name_ar: 'ريد بلدي هير', price_s: 90, price_d: null },
+                    { name_en: 'Mountain View', name_ar: 'مواتنتج فيو', price_s: 95, price_d: null }
                 ],
                 'ice-coffee': [
-                    { name_en: 'Ice Americano', name_ar: 'آيس أمريكانو', price_s: 50, price_d: null },
-                    { name_en: 'Ice Latte', name_ar: 'آيس لاتيه', price_s: 60, price_d: null },
-                    { name_en: 'Lotus Latte', name_ar: 'لوتس لاتيه', price_s: 65, price_d: null },
-                    { name_en: 'Ice Macchiato', name_ar: 'آيس ماكياتو', price_s: 65, price_d: null },
-                    { name_en: 'Ice Cappuccino', name_ar: 'آيس كابتشينو', price_s: 70, price_d: null },
-                    { name_en: 'Ice Caramel Macchiato', name_ar: 'آيس كراميل ماكياتو', price_s: 75, price_d: null },
-                    { name_en: 'Ice Mocha', name_ar: 'آيس موكا', price_s: 80, price_d: null },
-                    { name_en: 'Ice White Mocha', name_ar: 'آيس وايت موكا', price_s: 80, price_d: null },
-                    { name_en: 'Ice Spanish Latte', name_ar: 'آيس سبانش لاتيه', price_s: 85, price_d: null }
+                    { name_en: 'Ice Americano', name_ar: 'أيس أمريكانو', price_s: 60, price_d: null },
+                    { name_en: 'Ice Latte', name_ar: 'أيس لاتيه', price_s: 65, price_d: null },
+                    { name_en: 'Lotus Latte', name_ar: 'لوتس لاتيه', price_s: 75, price_d: null },
+                    { name_en: 'Ice Macchiato', name_ar: 'أيس ميكاتو', price_s: 70, price_d: null },
+                    { name_en: 'Ice Cappuccino', name_ar: 'أيس كابتشينو', price_s: 75, price_d: null },
+                    { name_en: 'Ice Caramel Macchiato', name_ar: 'أيس كراميل ميكاتو', price_s: 90, price_d: null },
+                    { name_en: 'Ice Mocha', name_ar: 'أيس موكا', price_s: 80, price_d: null },
+                    { name_en: 'Ice White Mocha', name_ar: 'أيس وايت موكا', price_s: 95, price_d: null },
+                    { name_en: 'Ice Spanish Latte', name_ar: 'أيس سبانش لاتيه', price_s: 90, price_d: null },
+                    { name_en: 'Ice Dark Sky Latte', name_ar: 'أيس دارلوسكاي لاتيه', price_s: 85, price_d: null },
+                    { name_en: 'Blue Ice Latte', name_ar: 'بلو أيس لاتيه', price_s: 85, price_d: null },
+                    { name_en: 'Ice Chicken Espreliw', name_ar: 'أيس تشيكن اسبرليو', price_s: 95, price_d: null },
+                    { name_en: 'Ice Chicken Avocado', name_ar: 'أيس تشيكن أفوكاتو كوفي', price_s: 95, price_d: null },
+                    { name_en: 'Matcha', name_ar: 'ماتشا', price_s: 130, price_d: null }
                 ],
                 'frappe': [
-                    { name_en: 'Frappe Coffee', name_ar: 'فرابيه كوفي', price_s: 75, price_d: null },
-                    { name_en: 'Frappe Double Coffee', name_ar: 'فرابيه دابل كوفي', price_s: 85, price_d: null },
-                    { name_en: 'Frappe Nutella', name_ar: 'نوتيلا فرابيه', price_s: 95, price_d: null },
-                    { name_en: 'Frappe Chocolate', name_ar: 'شوكليت فرابيه', price_s: 95, price_d: null },
-                    { name_en: 'Frappe Caramel', name_ar: 'كراميل فرابيه', price_s: 95, price_d: null },
-                    { name_en: 'Frappe Pistachio', name_ar: 'بستاشيو فرابيه', price_s: 110, price_d: null },
-                    { name_en: 'Sofiano Special Frappe', name_ar: 'سوفيانو سبيشال فرابيه', price_s: 135, price_d: null }
+                    { name_en: 'Frappe Coffee', name_ar: 'فرابيه كوفي', price_s: 95, price_d: null },
+                    { name_en: 'Frappe Double Coffee', name_ar: 'فرابيه دابل كوفي', price_s: 115, price_d: null },
+                    { name_en: 'Nutella Frappe', name_ar: 'نوتيلا فرابيه', price_s: 105, price_d: null },
+                    { name_en: 'Chocolate Frappe', name_ar: 'شوكليت فرابيه', price_s: 105, price_d: null },
+                    { name_en: 'Caramel Frappe', name_ar: 'كراميل فرابيه', price_s: 105, price_d: null },
+                    { name_en: 'Pistachio Frappe', name_ar: 'بستاشيو فرابيه', price_s: 140, price_d: null },
+                    { name_en: 'Sofiano Frappe', name_ar: 'سفيانو فرابيه', price_s: 150, price_d: null }
                 ],
                 'milkshake': [
-                    { name_en: 'Milk Vanilla', name_ar: 'ميلك فانيليا', price_s: 45, price_d: null },
-                    { name_en: 'Milk Chocolate', name_ar: 'ميلك شوكليت', price_s: 50, price_d: null },
-                    { name_en: 'Milk Caramel', name_ar: 'ميلك كراميل', price_s: 50, price_d: null },
-                    { name_en: 'Milk Strawberry', name_ar: 'ميلك فراولة', price_s: 50, price_d: null },
-                    { name_en: 'Milk Blueberry', name_ar: 'ميلك بلوبيري', price_s: 50, price_d: null },
-                    { name_en: 'Milk Mango', name_ar: 'ميلك مانجو', price_s: 55, price_d: null },
-                    { name_en: 'Milk Nutella', name_ar: 'ميلك نوتيلا', price_s: 55, price_d: null },
-                    { name_en: 'Milk Oreo', name_ar: 'ميلك أوريو', price_s: 65, price_d: null }
-                ],
-                'fresh-juice': [
-                    { name_en: 'Mango', name_ar: 'مانجو', price_s: 60, price_d: null },
-                    { name_en: 'Guava', name_ar: 'جوافة', price_s: 45, price_d: null },
-                    { name_en: 'Guava Milk', name_ar: 'جوافة حليب', price_s: 55, price_d: null },
-                    { name_en: 'Strawberry', name_ar: 'فراولة', price_s: 45, price_d: null },
-                    { name_en: 'Strawberry Milk', name_ar: 'فراولة حليب', price_s: 55, price_d: null },
-                    { name_en: 'Watermelon', name_ar: 'بطيخ', price_s: 45, price_d: null },
-                    { name_en: 'Lemon', name_ar: 'ليمون', price_s: 35, price_d: null },
-                    { name_en: 'Lemon Mint', name_ar: 'ليمون نعناع', price_s: 40, price_d: null },
-                    { name_en: 'Cantaloupe', name_ar: 'كانتلوب', price_s: 40, price_d: null },
-                    { name_en: 'Dates Milk', name_ar: 'بلح حليب', price_s: 45, price_d: null },
-                    { name_en: 'Banana Milk', name_ar: 'موز حليب', price_s: 45, price_d: null },
-                    { name_en: 'Kiwi', name_ar: 'كيوي', price_s: 75, price_d: null },
-                    { name_en: 'Avocado', name_ar: 'أفوكادو', price_s: 90, price_d: null },
-                    { name_en: 'Avocado Nuts', name_ar: 'أفوكادو مكسرات', price_s: 110, price_d: null }
+                    { name_en: 'Milk Vanilla', name_ar: 'ميلك فانيلتيا', price_s: 85, price_d: null },
+                    { name_en: 'Milk Chocolate', name_ar: 'ميلك شوكليت', price_s: 85, price_d: null },
+                    { name_en: 'Milk Caramel', name_ar: 'ميلك كراميل', price_s: 85, price_d: null },
+                    { name_en: 'Milk Strawberry', name_ar: 'ميلك فراوله', price_s: 95, price_d: null },
+                    { name_en: 'Milk Blueberry', name_ar: 'ميلك بلوبيري', price_s: 95, price_d: null },
+                    { name_en: 'Milk Mango', name_ar: 'ميلك مانجو', price_s: 95, price_d: null },
+                    { name_en: 'Milk Nutella', name_ar: 'ميلك نوتيلا', price_s: 105, price_d: null },
+                    { name_en: 'Milk Oreo', name_ar: 'ميلك أوريو', price_s: 105, price_d: null },
+                    { name_en: 'Milk Digestive Caramel', name_ar: 'ميلك داي جستيف كراميل', price_s: 110, price_d: null },
+                    { name_en: 'Milk Mix Berry', name_ar: 'ميلك ميكس بيري', price_s: 100, price_d: null },
+                    { name_en: 'Milk Over Dose', name_ar: 'ميلك اوفر دوز', price_s: 155, price_d: null },
+                    { name_en: 'Milk Lotus', name_ar: 'ميلك لوتس', price_s: 105, price_d: null }
                 ],
                 'smoothie': [
-                    { name_en: 'Ice Chocolate', name_ar: 'آيس شوكليت', price_s: 55, price_d: null },
-                    { name_en: 'Smoothie Strawberry', name_ar: 'سموثي فراولة', price_s: 60, price_d: null },
-                    { name_en: 'Smoothie Watermelon', name_ar: 'سموثي بطيخ', price_s: 60, price_d: null },
-                    { name_en: 'Smoothie Passion Fruit', name_ar: 'سموثي باشون فروت', price_s: 60, price_d: null, description: 'نعناع - عصير مانجو' },
-                    { name_en: 'Smoothie Fresh', name_ar: 'سموثي فريش', price_s: 60, price_d: null },
-                    { name_en: 'Smoothie Mango', name_ar: 'سموثي مانجو', price_s: 65, price_d: null },
-                    { name_en: 'Smoothie Tropical Mix', name_ar: 'سموثي تروبيكال ميكس', price_s: 70, price_d: null, description: 'باشون فروت - مانجو - موز' },
-                    { name_en: 'Smoothie Kiwi', name_ar: 'سموثي كيوي', price_s: 85, price_d: null }
+                    { name_en: 'Ice Chocolate', name_ar: 'أيس شوكليت', price_s: 60, price_d: null },
+                    { name_en: 'Smoothie Strawberry', name_ar: 'سموزي فراوله', price_s: 65, price_d: null },
+                    { name_en: 'Smoothie Watermelon', name_ar: 'سموثي بطيخ', price_s: 65, price_d: null },
+                    { name_en: 'Smoothie Passion Fruit', name_ar: 'سموزي باشون فروت', price_s: 65, price_d: null },
+                    { name_en: 'Smoothie Fresh', name_ar: 'سموزي فريش', price_s: 65, price_d: null },
+                    { name_en: 'Smoothie Mango', name_ar: 'سموزي مانجو', price_s: 70, price_d: null },
+                    { name_en: 'Smoothie Tropical Mix', name_ar: 'سموزي ترويبكال ميكس', price_s: 75, price_d: null },
+                    { name_en: 'Smoothie Kiwi', name_ar: 'سموزي كيوي', price_s: 90, price_d: null },
+                    { name_en: 'Smoothie Torpedo', name_ar: 'سموزي توربيدو', price_s: 80, price_d: null },
+                    { name_en: 'Smoothie Blue Banana', name_ar: 'سموزي بلوبنانا', price_s: 80, price_d: null }
                 ],
-                'cocktail': [
-                    { name_en: 'Pinacolada', name_ar: 'بيناكولادا', price_s: 50, price_d: null, description: 'اناناس - جوز هند - لبن' },
-                    { name_en: 'Yogurt Honey', name_ar: 'زبادي عسل', price_s: 75, price_d: null },
-                    { name_en: 'Bit the Hit', name_ar: 'بيت ذا هيت', price_s: 75, price_d: null, description: 'بطيخ - نعناع' },
-                    { name_en: 'Palarma', name_ar: 'بلارما', price_s: 75, price_d: null, description: 'ليمونه - نعناع - ليمون' },
-                    { name_en: 'Energy Power', name_ar: 'انرجي باور', price_s: 75, price_d: null, description: 'مانجو - ليمون' },
-                    { name_en: 'Florida', name_ar: 'فلوريدا', price_s: 80, price_d: null, description: 'مانجو - جوافة - فراولة' },
-                    { name_en: 'Kiwi Strw', name_ar: 'كيوي سترو', price_s: 85, price_d: null, description: 'فراولة - كيوي' },
-                    { name_en: 'Yogurt Mango', name_ar: 'زبادي مانجو', price_s: 85, price_d: null },
-                    { name_en: 'New Day', name_ar: 'نيو داي', price_s: 85, price_d: null, description: 'مانجو - موز - نعناع' },
-                    { name_en: 'Sofiano Special Cocktail', name_ar: 'سوفيانو سبيشال كوكتيل', price_s: 100, price_d: null, description: 'مانجو - جوز - آيس كريم فانيليا' }
-                ],
-                'dessert': [
-                    { name_en: 'Patie Cheese', name_ar: 'باتيه جبنة', price_s: 25, price_d: null },
-                    { name_en: 'Croissant', name_ar: 'كرواسون', price_s: 35, price_d: null },
-                    { name_en: 'Brownies Cake', name_ar: 'براونيز كيك', price_s: 45, price_d: null },
-                    { name_en: 'Cheese Cake', name_ar: 'تشيز كيك', price_s: 45, price_d: null },
-                    { name_en: 'Molten Cake', name_ar: 'مولتن كيك', price_s: 65, price_d: null },
-                    { name_en: 'Waffel', name_ar: 'وافل', price_s: 65, price_d: null }
+                'fresh-juice': [
+                    { name_en: 'Mango', name_ar: 'مانجو', price_s: 65, price_d: null },
+                    { name_en: 'Guava', name_ar: 'جوافة', price_s: 50, price_d: null },
+                    { name_en: 'Guava Milk', name_ar: 'جوافة حليب', price_s: 60, price_d: null },
+                    { name_en: 'Strawberry', name_ar: 'فراوله', price_s: 55, price_d: null },
+                    { name_en: 'Strawberry Milk', name_ar: 'فراوله حليب', price_s: 65, price_d: null },
+                    { name_en: 'Watermelon', name_ar: 'بطيخ', price_s: 55, price_d: null },
+                    { name_en: 'Lemon', name_ar: 'ليمون', price_s: 40, price_d: null },
+                    { name_en: 'Lemon Mint', name_ar: 'ليمون نعناع', price_s: 50, price_d: null },
+                    { name_en: 'Cantaloupe', name_ar: 'كانتلوب', price_s: 50, price_d: null },
+                    { name_en: 'Dates Milk', name_ar: 'بلح حليب', price_s: 55, price_d: null },
+                    { name_en: 'Dates Nuts', name_ar: 'بلح مكسرات', price_s: 75, price_d: null },
+                    { name_en: 'Banana Milk', name_ar: 'موز حليب', price_s: 50, price_d: null },
+                    { name_en: 'Kiwi', name_ar: 'كيوي', price_s: 90, price_d: null },
+                    { name_en: 'Avocado', name_ar: 'أفوكادو', price_s: 100, price_d: null },
+                    { name_en: 'Avocado Nuts', name_ar: 'أفوكادو مكسرات', price_s: 125, price_d: null }
                 ],
                 'soft-drink': [
                     { name_en: 'Water', name_ar: 'مياه', price_s: 10, price_d: null },
                     { name_en: 'Pepsi', name_ar: 'بيبسي', price_s: 30, price_d: null },
                     { name_en: '7UP', name_ar: 'سفن', price_s: 30, price_d: null },
-                    { name_en: 'Schweppes', name_ar: 'شويبس', price_s: 30, price_d: null },
-                    { name_en: 'Brill', name_ar: 'بريل', price_s: 35, price_d: null },
-                    { name_en: 'Fairouz', name_ar: 'فيروز', price_s: 35, price_d: null },
-                    { name_en: 'Red Bull', name_ar: 'ريدبول', price_s: 75, price_d: null }
+                    { name_en: 'Schweppes', name_ar: 'شويبس', price_s: 35, price_d: null },
+                    { name_en: 'Birell', name_ar: 'بريل', price_s: 35, price_d: null },
+                    { name_en: 'Fayrouz', name_ar: 'فيروز', price_s: 35, price_d: null },
+                    { name_en: 'Red Bull', name_ar: 'ريد بول', price_s: 75, price_d: null }
+                ],
+                'dessert': [
+                    { name_en: 'Patie Cheese', name_ar: 'باتيه جبنة', price_s: 45, price_d: null },
+                    { name_en: 'Croissant', name_ar: 'كرواسون', price_s: 50, price_d: null },
+                    { name_en: 'Croissant Cheese', name_ar: 'كرواسون جبنة', price_s: 65, price_d: null },
+                    { name_en: 'Brownies Cake', name_ar: 'براونيز كيك', price_s: 55, price_d: null },
+                    { name_en: 'San Sebastian Cheese Cake', name_ar: 'تشيز كيك سان سيبستان', price_s: 55, price_d: null },
+                    { name_en: 'American Cheese Cake', name_ar: 'تشيز كيك أمريكان', price_s: 55, price_d: null },
+                    { name_en: 'Molten Cake', name_ar: 'مولتن كيك', price_s: 95, price_d: null },
+                    { name_en: 'Madness', name_ar: 'مادنس', price_s: 75, price_d: null },
+                    { name_en: 'Fudge', name_ar: 'فادج', price_s: 70, price_d: null },
+                    { name_en: 'Red Velvet', name_ar: 'ريد فيلفت', price_s: 65, price_d: null },
+                    { name_en: 'Om Ali', name_ar: 'أم علي', price_s: 70, price_d: null }
+                ],
+                'cocktail': [
+                    { name_en: 'Pinacolada', name_ar: 'بيناكولادا', price_s: 75, price_d: null, description: 'أناناس - جوافه - لبن' },
+                    { name_en: 'Yogurt Honey', name_ar: 'يويورت هاني', price_s: 60, price_d: null },
+                    { name_en: 'Beat the Heat', name_ar: 'بيت ذا هيت', price_s: 75, price_d: null, description: 'بطيخ - فراوله - ليمون' },
+                    { name_en: 'Palarma', name_ar: 'بالارما', price_s: 75, price_d: null, description: 'جوافه - نعناع - ليمون - سفن' },
+                    { name_en: 'Energy Power', name_ar: 'إنرجي باور', price_s: 95, price_d: null, description: 'بلح - موز' },
+                    { name_en: 'Florida', name_ar: 'فلوريدا', price_s: 85, price_d: null, description: 'مانجو - جوافه - فراوله' },
+                    { name_en: 'Kiwi Strw', name_ar: 'كيوي ستيرو', price_s: 95, price_d: null, description: 'فراوله - كيوي' },
+                    { name_en: 'Yogurt Mango', name_ar: 'يوجرت مانجو', price_s: 85, price_d: null },
+                    { name_en: 'New Day', name_ar: 'نيو داي', price_s: 95, price_d: null, description: 'مانجو - بلوبيري - نعناع' },
+                    { name_en: 'Sofiano Special Cocktail', name_ar: 'سفيانو سبيشيال كوكتيل', price_s: 125, price_d: null, description: 'مانجو - خوخ - أيس كريم فانيليا' },
+                    { name_en: 'Fruit Salad', name_ar: 'فروت سالت', price_s: 85, price_d: null }
                 ],
                 'extra': [
-                    { name_en: 'Ice Cream', name_ar: 'آيس كريم', price_s: 20, price_d: null },
-                    { name_en: 'Pistachio Sauce', name_ar: 'صوص بستاشيو', price_s: 25, price_d: null },
+                    { name_en: 'Ice Cream', name_ar: 'أيس كريم', price_s: 25, price_d: null },
+                    { name_en: 'Pistachio Sauce', name_ar: 'صوص بيستاشيو', price_s: 30, price_d: null },
                     { name_en: 'Cheddar Cheese', name_ar: 'جبنة شيدر', price_s: 25, price_d: null },
                     { name_en: 'Sauce', name_ar: 'صوص', price_s: 15, price_d: null },
-                    { name_en: 'Milk', name_ar: 'حليب', price_s: 25, price_d: null }
+                    { name_en: 'Milk', name_ar: 'حليب', price_s: 25, price_d: null },
+                    { name_en: 'Nuts', name_ar: 'مكسرات', price_s: 30, price_d: null }
                 ]
             }
         };
@@ -1026,7 +1311,13 @@
                 const btn = document.createElement('button');
                 btn.className = 'category-btn';
                 btn.dataset.id = category.id;
-                btn.innerHTML = `<i class="fa-solid ${category.icon}"></i> ${category.name}`;
+                btn.innerHTML = `
+                    <span class="icon-badge"><i class="fa-solid ${category.icon}"></i></span>
+                    <span class="labels">
+                        <span class="label-ar">${category.name_ar}</span>
+                        <span class="label-en">${category.name}</span>
+                    </span>
+                `;
                 btn.addEventListener('click', () => switchCategory(category.id, btn));
                 fragment.appendChild(btn);
             });
@@ -1041,9 +1332,25 @@
             // Update UI
             document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
+            centerActiveCategory(btn);
 
             // Optimized render
             renderMenuContent();
+
+            // UX FIX: Scroll to menu content smoothly if user scrolled past the tabs
+            const menuContainer = document.querySelector('.menu-container');
+            if (window.scrollY > menuContainer.offsetTop - 50) {
+                window.scrollTo({ top: menuContainer.offsetTop - 80, behavior: 'smooth' });
+            }
+        }
+
+        function centerActiveCategory(btn) {
+            if (!btn) return;
+            btn.scrollIntoView({
+                behavior: 'smooth',
+                inline: 'center',
+                block: 'nearest'
+            });
         }
 
         function renderMenuContent() {
@@ -1069,13 +1376,13 @@
                     if (cat.id === 'offers') {
                         let offersHtml = items.map(item => `
                             <div class="offer-card" onclick="openLightbox('${item.src}')">
-                                <img src="${item.src}" class="offer-image" alt="${item.alt}" loading="eager" onerror="this.src='assets/images/placeholder.jpg'">
+                                <img src="${item.src}" class="offer-image" alt="${item.alt}" loading="lazy" onerror="this.src='https://placehold.co/600x600/0F2B2B/D4AF37?text=Eid+Offer'">
                             </div>
                         `).join('');
 
                         html += `
                             <div class="menu-category" id="${cat.id}">
-                                <h2 class="category-title">${cat.name}</h2>
+                                <h2 class="category-title">${cat.name_ar}</h2>
                                 <div class="offers-grid">
                                     ${offersHtml}
                                 </div>
@@ -1084,30 +1391,30 @@
                     } else {
                         // NORMAL MENU ITEMS LIST
                         let itemsHtml = items.map(item => {
-                            const priceS = item.price_s !== null ? item.price_s : '';
-                            const priceD = item.price_d !== null ? item.price_d : '';
-                            const naClassS = item.price_s === null ? 'price-na' : '';
-                            const naClassD = item.price_d === null ? 'price-na' : '';
-                            const symbolS = item.price_s === null ? '-' : '';
-                            const symbolD = item.price_d === null ? '-' : '';
+                            const priceS = item.price_s !== null ? `<div class="price-badge"><span class="size">S</span><span class="amount">${item.price_s}</span></div>` : '';
+                            const priceD = item.price_d !== null ? `<div class="price-badge"><span class="size">D</span><span class="amount">${item.price_d}</span></div>` : '';
 
                             return `
                                 <div class="menu-item">
-                                    <div class="item-names">
-                                        <div class="item-name-ar">${item.name_ar}</div>
-                                        ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
-                                        <div class="item-name-en mobile-only">${item.name_en}</div>
+                                    <div class="item-row">
+                                        <div class="item-names">
+                                            <div class="item-name-ar">${item.name_ar}</div>
+                                            <div class="item-name-en">${item.name_en}</div>
+                                        </div>
+                                        <div class="item-dots"></div>
+                                        <div class="item-prices">
+                                            ${priceS}
+                                            ${priceD}
+                                        </div>
                                     </div>
-                                    <div class="price-s ${naClassS}">${priceS}${symbolS}</div>
-                                    <div class="price-d ${naClassD}">${priceD}${symbolD}</div>
-                                    <div class="item-name-en desktop-only" style="display:none">${item.name_en}</div>
+                                    ${item.description ? `<div class="item-description">${item.description}</div>` : ''}
                                 </div>
                             `;
                         }).join('');
 
                         // Note logic
                         const note = cat.id === 'special-coffee'
-                            ? `<div style="padding:15px; background:rgba(212,175,55,0.05); font-size:0.85rem; text-align:center; color:var(--dark-teal); border-top:1px dashed #ddd;">
+                            ? `<div style="grid-column: 1 / -1; padding:15px; background:rgba(212,175,55,0.05); font-size:0.85rem; text-align:center; color:var(--dark-teal); border:1px dashed #D4AF37; border-radius:12px; margin-top: 10px;">
                                 <i class="fas fa-star" style="color:var(--gold)"></i> 
                                 النكهات: فانيلا – بندق – فستق – شوكولاتة – كراميل – مانجو – توت – تفاح – فراولة
                             </div>`
@@ -1115,15 +1422,9 @@
 
                         html += `
                             <div class="menu-category" id="${cat.id}">
-                                <h2 class="category-title">${cat.name}</h2>
+                                <h2 class="category-title">${cat.name_ar}</h2>
                                 <div class="menu-table-container">
-                                    <div class="menu-header">
-                                        <div>الاسم</div>
-                                        <div>S</div>
-                                        <div>D</div>
-                                        <div>Name</div>
-                                    </div>
-                                    <div>${itemsHtml}</div>
+                                    ${itemsHtml}
                                     ${note}
                                 </div>
                             </div>
@@ -1168,17 +1469,27 @@
 
             // Handle error inside lightbox too just in case
             img.onerror = function () {
-                this.src = 'https://placehold.co/600x600/0F2B2B/D4AF37?text=Ramadan+Offer';
+                this.src = 'https://placehold.co/600x600/0F2B2B/D4AF37?text=Eid+Offer';
             };
+
+            // Add escape key listener
+            document.addEventListener('keydown', handleEscapeKey);
 
             modal.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent scrolling bg
         }
 
-        function closeLightbox() {
+        function handleEscapeKey(e) {
+            if (e.key === 'Escape') closeLightbox();
+        }
+
+        function closeLightbox(event) {
+            // Prevent bubbling if clicking on the image itself
+            if(event && event.target.tagName === 'IMG') return;
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            document.removeEventListener('keydown', handleEscapeKey);
         }
 
     </script>
